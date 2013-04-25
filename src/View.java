@@ -13,7 +13,9 @@ public class View {
 	// get values from model and draw
 	public void render(GameContainer gc, Graphics g) {
 		
+		// draw command boxes
 		
+		// draw stack
 		
 	}
 

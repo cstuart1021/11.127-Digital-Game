@@ -23,11 +23,18 @@ public class Controller implements InputListener {
 	public void mouseClicked(int arg0, int arg1, int arg2, int arg3) {
 		// TODO Auto-generated method stub
 		
+		// check for run
+		
+		
+		
 	}
 
 	@Override
 	public void mouseDragged(int arg0, int arg1, int arg2, int arg3) {
 		// TODO Auto-generated method stub
+		
+		// get command box
+		// modify command box
 		
 	}
 
@@ -35,16 +42,23 @@ public class Controller implements InputListener {
 	public void mouseMoved(int arg0, int arg1, int arg2, int arg3) {
 		// TODO Auto-generated method stub
 		
+		
+		
 	}
 
 	@Override
 	public void mousePressed(int arg0, int arg1, int arg2) {
 		// TODO Auto-generated method stub
 		
+		// get command box (put into current command box)
+		// modify command box 
+		
 	}
 	@Override
 	public void mouseReleased(int arg0, int arg1, int arg2) {
 		// TODO Auto-generated method stub
+		
+		// check to modify stack
 		
 	}
 	@Override
