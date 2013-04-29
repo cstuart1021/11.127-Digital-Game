@@ -1,14 +1,16 @@
 import org.newdawn.slick.*;
 
 
-public class Controller implements InputListener {
+public class Controller{
 	Model model;
 	Input input;
+	CommandBox cur_command_box;
 	
 	
 	public Controller(Model model) {
 		
 		this.model = model;
+		
 		
 	}
 	
@@ -19,26 +21,26 @@ public class Controller implements InputListener {
 		
 	}
 
-	@Override
 	public void mouseClicked(int arg0, int arg1, int arg2, int arg3) {
 		// TODO Auto-generated method stub
 		
 		// check for run
-		
+		System.out.println("clicked");
 		
 		
 	}
 
-	@Override
-	public void mouseDragged(int arg0, int arg1, int arg2, int arg3) {
+
+	public void mouseDragged(int arg0, int arg1, int new_x, int new_y) {
 		// TODO Auto-generated method stub
 		
-		// get command box
+		if (cur_command_box != null){
+			model.modifyCBPos(cur_command_box, new_x, new_y );
+		}
 		// modify command box
 		
 	}
 
-	@Override
 	public void mouseMoved(int arg0, int arg1, int arg2, int arg3) {
 		// TODO Auto-generated method stub
 		
@@ -46,106 +48,52 @@ public class Controller implements InputListener {
 		
 	}
 
-	@Override
-	public void mousePressed(int arg0, int arg1, int arg2) {
+
+	public void mousePressed(int arg0, int x, int y) {
 		// TODO Auto-generated method stub
 		
 		// get command box (put into current command box)
+		System.out.println("pressed");
+		cur_command_box = getCurBox(x, y);
+		if (cur_command_box != null) {
+			model.changeCBColor(Color.blue, cur_command_box);
+		}
+
 		// modify command box 
 		
 	}
-	@Override
-	public void mouseReleased(int arg0, int arg1, int arg2) {
+
+	
+	public void mouseReleased(int arg0, int x, int y) {
 		// TODO Auto-generated method stub
 		
 		// check to modify stack
+		if (cur_command_box != null) {
+			model.modifyCBPos(cur_command_box, cur_command_box.x, cur_command_box.y);
+		}
 		
 	}
-	@Override
-	public void mouseWheelMoved(int arg0) {
-		// TODO Auto-generated method stub
+
+	public CommandBox getCurBox(int x, int y){
 		
+		if (model.cur_screen == Model.Screen.LEVEL1) {
+			
+			for (int i = 0; i< model.level_one_boxes.size(); i++){
+				CommandBox temp = model.level_one_boxes.get(i);
+				if (x > temp.cur_x && x < temp.cur_x+CommandBox.width &&
+					y > temp.cur_y && y < temp.cur_y + CommandBox.height) {
+					
+					return temp;
+				}
+				
+			}
+			return null;
+			
+		}
+		return null;
 	}
-	
-	@Override
-	public void inputEnded() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void inputStarted() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public boolean isAcceptingInput() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public void setInput(Input arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void keyPressed(int arg0, char arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void keyReleased(int arg0, char arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void controllerButtonPressed(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void controllerButtonReleased(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void controllerDownPressed(int arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void controllerDownReleased(int arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void controllerLeftPressed(int arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void controllerLeftReleased(int arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void controllerRightPressed(int arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void controllerRightReleased(int arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void controllerUpPressed(int arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void controllerUpReleased(int arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 	                 
 }
