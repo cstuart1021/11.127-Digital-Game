@@ -35,7 +35,7 @@ public class Controller{
 		// TODO Auto-generated method stub
 		
 		if (cur_command_box != null){
-			model.modifyCBPos(cur_command_box, new_x, new_y );
+			model.modifyCBPos(cur_command_box, cur_command_box.cur_x + ( new_x - arg0),cur_command_box.cur_y + (new_y - arg1) );
 		}
 		// modify command box
 		
@@ -56,7 +56,7 @@ public class Controller{
 		System.out.println("pressed");
 		cur_command_box = getCurBox(x, y);
 		if (cur_command_box != null) {
-			model.changeCBColor(Color.blue, cur_command_box);
+			model.changeCBColor(Color.green.darker(), cur_command_box);
 		}
 
 		// modify command box 
@@ -69,6 +69,7 @@ public class Controller{
 		
 		// check to modify stack
 		if (cur_command_box != null) {
+			model.changeCBColor(Color.green, cur_command_box);
 			model.modifyCBPos(cur_command_box, cur_command_box.x, cur_command_box.y);
 		}
 		
