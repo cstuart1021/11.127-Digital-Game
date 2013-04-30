@@ -49,7 +49,8 @@ public class KitchenDisaster extends BasicGame
   public void render(GameContainer gc, Graphics g) throws SlickException
   {
 	 view.render(gc, g);
-     g.drawString("Kitchen Disaster", 100, 100);
+	 g.setColor(Color.white);
+     g.drawString("Kitchen Disaster", 100, 75);
   }
  
   public static void main(String[] args) throws SlickException

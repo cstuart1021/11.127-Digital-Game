@@ -1,4 +1,5 @@
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Rectangle;
 
 
 public class Controller{
@@ -35,7 +36,13 @@ public class Controller{
 		if (cur_command_box != null){
 			model.modifyCBPos(cur_command_box, cur_command_box.cur_x + ( new_x - arg0),cur_command_box.cur_y + (new_y - arg1) );
 		}
-		// modify command box
+		
+		if (model.cur_screen == Model.Screen.LEVEL1) {
+			if ( ! overRunButton(model.run_level_one, new_x, new_y) && model.over_run_1 ){
+				model.button_color = model.run_color;
+				model.over_run_1 = false;
+			}
+		}
 		
 	}
 
@@ -51,10 +58,16 @@ public class Controller{
 		// TODO Auto-generated method stub
 		
 		// get command box (put into current command box)
-		
-		cur_command_box = getCurBox(x, y);
-		if (cur_command_box != null) {
-			model.changeCBColor(Color.green.darker(), cur_command_box);
+		if (model.cur_screen == Model.Screen.LEVEL1) {
+			cur_command_box = getCurBox(x, y);
+			if (cur_command_box != null) {
+				model.changeCBColor(Color.green.darker(), cur_command_box);
+			} else {
+				if ( overRunButton(model.run_level_one, x, y) && model.over_run_1 == false )  {
+					model.over_run_1 = true;
+					model.button_color = model.button_color.darker();
+				}
+			}
 		}
 
 		// modify command box 
@@ -75,6 +88,13 @@ public class Controller{
 				} else {
 					model.modifyCBPos(cur_command_box, model.stack_level_one.x , model.stack_level_one.y + section*CommandBox.height);
 				}
+			} else {
+				if (overRunButton(model.run_level_one, x, y)) {
+					model.run();
+					model.button_color = model.run_color;
+					model.over_run_1 = false;
+				}
+		
 			}
 		}
 		
@@ -97,6 +117,15 @@ public class Controller{
 			
 		}
 		return null;
+	}
+	
+	public boolean overRunButton(Rectangle rect, int x, int y) {
+		if (x > rect.getX() && x < rect.getX() + rect.getWidth() &&
+			y > rect.getY() && y < rect.getY() + rect.getHeight()) {
+			
+			return true;
+		}
+		return false;
 	}
 
 
