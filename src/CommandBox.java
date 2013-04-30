@@ -21,6 +21,7 @@ public class CommandBox {
 	
 	// command string
 	String str;
+	int section;
 	
 	public CommandBox(int x, int y, String str) {
 		this.x = x;
@@ -30,6 +31,7 @@ public class CommandBox {
 		this.str = str;
 		rect_color = Color.green;
 		text_color = Color.black;
+		section = -1;
 		
 		rect = new Rectangle(x, y, width, height);
 		//renderer = new ShapeRenderer();
