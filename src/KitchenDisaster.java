@@ -65,8 +65,6 @@ public class KitchenDisaster extends BasicGame
     @Override
 	public void mouseClicked(int arg0, int arg1, int arg2, int arg3) {
 		// TODO Auto-generated method stub
-		
-		// check for run
 		controller.mouseClicked(arg0, arg1, arg2, arg3);
 		
 		

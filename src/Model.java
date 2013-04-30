@@ -10,6 +10,7 @@ public class Model {
 	//CommandBoxs
 	ArrayList<CommandBox> level_one_boxes = new ArrayList<CommandBox>();
 	CommandBox level_one_commandbox_1;
+	CommandBox level_one_commandbox_2;
 	
 	//stack
 	Stack stack_level_one = new Stack(600, 40, 10);
@@ -27,7 +28,9 @@ public class Model {
 		// make command boxes
 		
 		level_one_commandbox_1 = new CommandBox(40, 300, "clean counter");
+		level_one_commandbox_2 = new CommandBox(40, 360, "clean dishes");
 		level_one_boxes.add(0, level_one_commandbox_1);
+		level_one_boxes.add(1, level_one_commandbox_2);
 		
 	}
 	public void modifyStack() {

@@ -25,8 +25,6 @@ public class Controller{
 		// TODO Auto-generated method stub
 		
 		// check for run
-		System.out.println("clicked");
-		
 		
 	}
 
@@ -53,7 +51,7 @@ public class Controller{
 		// TODO Auto-generated method stub
 		
 		// get command box (put into current command box)
-		System.out.println("pressed");
+		
 		cur_command_box = getCurBox(x, y);
 		if (cur_command_box != null) {
 			model.changeCBColor(Color.green.darker(), cur_command_box);
@@ -68,9 +66,16 @@ public class Controller{
 		// TODO Auto-generated method stub
 		
 		// check to modify stack
-		if (cur_command_box != null) {
-			model.changeCBColor(Color.green, cur_command_box);
-			model.modifyCBPos(cur_command_box, cur_command_box.x, cur_command_box.y);
+		if (model.cur_screen == Model.Screen.LEVEL1) {
+			if (cur_command_box != null) {
+				model.changeCBColor(Color.green, cur_command_box);
+				int section = model.stack_level_one.getClosestSection(cur_command_box, cur_command_box.cur_x, cur_command_box.cur_y);
+				if (section == -1) {
+					model.modifyCBPos(cur_command_box, cur_command_box.x, cur_command_box.y);
+				} else {
+					model.modifyCBPos(cur_command_box, model.stack_level_one.x , model.stack_level_one.y + section*CommandBox.height);
+				}
+			}
 		}
 		
 	}
