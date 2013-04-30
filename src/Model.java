@@ -7,6 +7,8 @@ public class Model {
 	
 	Screen cur_screen;
 	
+	StartScreen start_screen;
+	
 	//CommandBoxs
 	ArrayList<CommandBox> level_one_boxes = new ArrayList<CommandBox>();
 	CommandBox level_one_commandbox_1;
@@ -24,13 +26,14 @@ public class Model {
 	public Model() {
 		
 		cur_screen = Screen.START;
-		cur_screen = Screen.LEVEL1;
+		start_screen = new StartScreen();
+		//cur_screen = Screen.LEVEL1;
 		// make command boxes
 		
-		level_one_commandbox_1 = new CommandBox(40, 300, "clean counter");
-		level_one_commandbox_2 = new CommandBox(40, 360, "clean dishes");
-		level_one_boxes.add(0, level_one_commandbox_1);
-		level_one_boxes.add(1, level_one_commandbox_2);
+		//level_one_commandbox_1 = new CommandBox(40, 300, "clean counter");
+		//level_one_commandbox_2 = new CommandBox(40, 360, "clean dishes");
+		//level_one_boxes.add(0, level_one_commandbox_1);
+		//level_one_boxes.add(1, level_one_commandbox_2);
 		
 	}
 	public void modifyStack() {

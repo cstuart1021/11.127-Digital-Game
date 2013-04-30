@@ -23,7 +23,12 @@ public class Controller{
 
 	public void mouseClicked(int arg0, int arg1, int arg2, int arg3) {
 		// TODO Auto-generated method stub
+		model.cur_screen = Model.Screen.LEVEL1;
 		
+		model.level_one_commandbox_1 = new CommandBox(40, 300, "clean counter");
+		model.level_one_commandbox_2 = new CommandBox(40, 360, "clean dishes");
+		model.level_one_boxes.add(0, model.level_one_commandbox_1);
+		model.level_one_boxes.add(1, model.level_one_commandbox_2);
 		// check for run
 		
 	}
