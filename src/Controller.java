@@ -7,7 +7,6 @@ public class Controller{
 	Input input;
 	CommandBox cur_command_box;
 	
-	
 	public Controller(Model model) {
 		
 		this.model = model;
@@ -26,10 +25,7 @@ public class Controller{
 		// TODO Auto-generated method stub
 		model.cur_screen = Model.Screen.LEVEL1;
 		
-		model.level_one_commandbox_1 = new CommandBox(40, 300, "clean counter");
-		model.level_one_commandbox_2 = new CommandBox(40, 360, "clean dishes");
-		model.level_one_boxes.add(0, model.level_one_commandbox_1);
-		model.level_one_boxes.add(1, model.level_one_commandbox_2);
+		model.level1 = new Level1(model);
 		// check for run
 		
 	}
@@ -43,7 +39,7 @@ public class Controller{
 		}
 		
 		if (model.cur_screen == Model.Screen.LEVEL1) {
-			if ( ! overRunButton(model.run_level_one, new_x, new_y) && model.over_run_1 ){
+			if ( ! overRunButton(model.run, new_x, new_y) && model.over_run_1 ){
 				model.button_color = model.run_color;
 				model.over_run_1 = false;
 			}
@@ -68,7 +64,7 @@ public class Controller{
 			if (cur_command_box != null) {
 				model.changeCBColor(Color.green.darker(), cur_command_box);
 			} else {
-				if ( overRunButton(model.run_level_one, x, y) && model.over_run_1 == false )  {
+				if ( overRunButton(model.run, x, y) && model.over_run_1 == false )  {
 					model.over_run_1 = true;
 					model.button_color = model.button_color.darker();
 				}
@@ -87,14 +83,14 @@ public class Controller{
 		if (model.cur_screen == Model.Screen.LEVEL1) {
 			if (cur_command_box != null) {
 				model.changeCBColor(Color.green, cur_command_box);
-				int section = model.stack_level_one.getClosestSection(cur_command_box, cur_command_box.cur_x, cur_command_box.cur_y);
+				int section = model.stack.getClosestSection(cur_command_box, cur_command_box.cur_x, cur_command_box.cur_y);
 				if (section == -1) {
 					model.modifyCBPos(cur_command_box, cur_command_box.x, cur_command_box.y);
 				} else {
-					model.modifyCBPos(cur_command_box, model.stack_level_one.x , model.stack_level_one.y + section*CommandBox.height);
+					model.modifyCBPos(cur_command_box, model.stack.x , model.stack.y + section*CommandBox.height);
 				}
 			} else {
-				if (overRunButton(model.run_level_one, x, y)) {
+				if (overRunButton(model.run, x, y)) {
 					model.run();
 					model.button_color = model.run_color;
 					model.over_run_1 = false;
@@ -109,8 +105,8 @@ public class Controller{
 		
 		if (model.cur_screen == Model.Screen.LEVEL1) {
 			
-			for (int i = 0; i< model.level_one_boxes.size(); i++){
-				CommandBox temp = model.level_one_boxes.get(i);
+			for (int i = 0; i< model.boxes.size(); i++){
+				CommandBox temp = model.boxes.get(i);
 				if (x > temp.cur_x && x < temp.cur_x+CommandBox.width &&
 					y > temp.cur_y && y < temp.cur_y + CommandBox.height) {
 					

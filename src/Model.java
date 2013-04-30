@@ -13,19 +13,23 @@ public class Model {
 
 	StartScreen start_screen;
 	
+	//Levels
+	Level1 level1;
+	
+	//current level
+	int cur_level;
+	
 	//CommandBoxes
-	ArrayList<CommandBox> level_one_boxes = new ArrayList<CommandBox>();
-	CommandBox level_one_commandbox_1;
-	CommandBox level_one_commandbox_2;
+	ArrayList<CommandBox> boxes = new ArrayList<CommandBox>();
 	//stack
-	Stack stack_level_one = new Stack(600, 40, 10);
+	Stack stack = new Stack(600, 40, 10);
 	String error_1;
 	
 	
 	// run button
 	Color button_color;
 	Color run_color;
-	Rectangle run_level_one;
+	Rectangle run;
 	boolean over_run_1;
 
 	public static enum Screen {
@@ -40,15 +44,8 @@ public class Model {
 		
 		cur_screen = Screen.START;
 		start_screen = new StartScreen();
-		//cur_screen = Screen.LEVEL1;
-		// make command boxes
 		
-
-		level_one_commandbox_1 = new CommandBox(40, 300, "clean counter");
-		level_one_commandbox_2 = new CommandBox(40, 360, "clean dishes");
-		level_one_boxes.add(0, level_one_commandbox_1);
-		level_one_boxes.add(1, level_one_commandbox_2);
-		run_level_one = new Rectangle( 400,400, 100, 100);
+		run = new Rectangle( 400,400, 100, 100);
 		button_color = new Color(0 , 204, 102);
 		run_color = new Color(0, 204, 102);
 		over_run_1 = false;
@@ -74,34 +71,10 @@ public class Model {
 	
 	public void run() {
 		
-		
-		// depending on state, check for correctness
 		if (cur_screen == Screen.LEVEL1){
-			boolean containsCommandBox1 = false;
-			boolean containsCommandBox2 = false;
-			for (int i = 0 ; i<stack_level_one.num_boxes; i++) {
-				CommandBox temp = stack_level_one.box_stack[i];
-				if (temp == null ){
-					continue;
-				}
-				if (temp.str.equals(level_one_commandbox_1.str)){
-					containsCommandBox1 = true;
-				} else if (temp.str.equals(level_one_commandbox_2.str)){
-					containsCommandBox2 = true;
-				}
-				
-			}
-			
-			if (! (containsCommandBox1 && containsCommandBox2)){
-				cur_error = error_1;
-				cur_prog = Progress.ERROR;
-			} else {
-				cur_error = "Done!";
-				cur_prog = Progress.SUCCESS;
-			}
-			
-			
+			level1.run();
 		}
+		
 	}
 	
 }
