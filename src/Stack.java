@@ -65,6 +65,7 @@ public class Stack {
 			cur_cb.section = closest_section;
 			return closest_section;
 		} else {
+			cur_cb.section = -1;
 			return  -1;
 		}
 		
