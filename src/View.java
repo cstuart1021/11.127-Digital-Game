@@ -11,7 +11,7 @@ public class View {
 		
 		this.model = model;
 	}
-	
+	// albhalbab
 
 	// get values from model and draw
 	public void render(GameContainer gc, Graphics g) {
