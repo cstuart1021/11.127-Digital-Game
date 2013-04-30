@@ -10,6 +10,9 @@ public class Model {
 	Progress cur_prog;
 	String cur_error;
 	
+
+	StartScreen start_screen;
+	
 	//CommandBoxes
 	ArrayList<CommandBox> level_one_boxes = new ArrayList<CommandBox>();
 	CommandBox level_one_commandbox_1;
@@ -36,9 +39,11 @@ public class Model {
 	public Model() {
 		
 		cur_screen = Screen.START;
-		cur_screen = Screen.LEVEL1;
+		start_screen = new StartScreen();
+		//cur_screen = Screen.LEVEL1;
 		// make command boxes
 		
+
 		level_one_commandbox_1 = new CommandBox(40, 300, "clean counter");
 		level_one_commandbox_2 = new CommandBox(40, 360, "clean dishes");
 		level_one_boxes.add(0, level_one_commandbox_1);
@@ -48,6 +53,7 @@ public class Model {
 		run_color = new Color(0, 204, 102);
 		over_run_1 = false;
 		error_1 = "You do still have some messy things!";
+
 		
 	}
 	public void modifyStack() {

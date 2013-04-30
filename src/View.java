@@ -16,8 +16,13 @@ public class View {
 	// get values from model and draw
 	public void render(GameContainer gc, Graphics g) {
 		
-		// draw command boxes
-		if (model.cur_screen == Model.Screen.LEVEL1) {
+		//start screen
+		if (model.cur_screen == Model.Screen.START){
+			model.start_screen.render(g);
+		}
+		//draw command boxes
+		else if (model.cur_screen == Model.Screen.LEVEL1) {
+			g.setBackground(Color.black);
 			for (int x = 0; x < model.level_one_boxes.size(); x++) {
 				
 				CommandBox temp_box = model.level_one_boxes.get(x);
