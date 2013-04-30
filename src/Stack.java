@@ -41,6 +41,9 @@ public class Stack {
 		double diff = Integer.MAX_VALUE;
 		double temp_diff;
 		int closest_section = 0;
+		if (cur_cb.section != -1) {
+			box_stack[cur_cb.section] = null;
+		}
 		for (int i = 0; i< num_boxes; i ++) {
 			temp_diff = Math.sqrt( Math.pow(cb_x - x, 2) + Math.pow(cb_y - (y + i*CommandBox.height),2) );
 			if (temp_diff < diff) {
@@ -50,12 +53,16 @@ public class Stack {
 		}
 		
 		if (diff < CommandBox.width) {
+			//System.out.println(closest_section);
 			CommandBox temp = box_stack[closest_section];
 			if (temp != null) {
+				//System.out.println(temp.str);
 				temp.cur_x = temp.x;
 				temp.cur_y = temp.y;
+				temp.section = -1;
 			}
 			box_stack[closest_section] =  cur_cb;
+			cur_cb.section = closest_section;
 			return closest_section;
 		} else {
 			return  -1;
