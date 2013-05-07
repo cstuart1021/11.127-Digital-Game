@@ -24,6 +24,8 @@ public class Model {
 	//stack
 	Stack stack = new Stack(600, 40, 10);
 	String error_1;
+	String error_2;
+	String error_3;
 	
 	
 	// run button
@@ -50,6 +52,8 @@ public class Model {
 		run_color = new Color(0, 204, 102);
 		over_run_1 = false;
 		error_1 = "You do still have some messy things!";
+		error_2 = " no soapy hot water!!";
+		error_3 = " stay on task!";
 
 		
 	}

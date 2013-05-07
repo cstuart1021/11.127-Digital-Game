@@ -19,6 +19,7 @@ public class KitchenDisaster extends BasicGame
   {
 	  
 	  model = new Model();
+	  model.level1 = new Level1(model, gc);
 	  view = new View(model);
 	  controller = new Controller(model);
 	  input = gc.getInput();
@@ -48,9 +49,10 @@ public class KitchenDisaster extends BasicGame
  
   public void render(GameContainer gc, Graphics g) throws SlickException
   {
+	 g.setColor(Color.white);
 	 view.render(gc, g);
 	 g.setColor(Color.white);
-     g.drawString("Kitchen Disaster", 100, 75);
+     //g.drawString("Kitchen Disaster", 100, 75);
   }
  
   public static void main(String[] args) throws SlickException

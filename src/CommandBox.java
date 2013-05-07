@@ -14,7 +14,7 @@ public class CommandBox {
 	// java rectangle
 	Color rect_color;
 	Color text_color;
-	static int width = 120;
+	static int width = 130;
 	static int height = 25;
 	Rectangle rect;
 	//ShapeRenderer renderer;

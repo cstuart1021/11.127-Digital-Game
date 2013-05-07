@@ -25,7 +25,7 @@ public class Controller{
 		// TODO Auto-generated method stub
 		model.cur_screen = Model.Screen.LEVEL1;
 		
-		model.level1 = new Level1(model);
+		
 		// check for run
 		
 	}
