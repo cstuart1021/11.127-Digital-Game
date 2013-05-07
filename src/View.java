@@ -49,15 +49,16 @@ public class View {
 			
 			if (model.cur_prog == Model.Progress.ERROR){
 				g.setColor(Color.red);
-				g.drawString(model.cur_error, 100, 100);
+				g.drawString(model.cur_error, 100, 140);
 			} else if (model.cur_prog == Model.Progress.SUCCESS) {
 				g.setColor(Color.green);
-				g.drawString(model.cur_error, 100, 150);
+				g.drawString(model.cur_error, 100, 140);
 			}
 			for (int x = 0; x<model.level1.tf_list.size(); x++){
 				TextField tf = model.level1.tf_list.get(x);
 				tf.setBorderColor(Color.black);
 				tf.setTextColor(Color.white);
+				g.setColor(Color.white);
 				tf.render(gc, g);
 			}
 
