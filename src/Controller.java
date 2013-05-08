@@ -105,8 +105,8 @@ public class Controller{
 		
 		if (model.cur_screen == Model.Screen.LEVEL1) {
 			
-			for (int i = 0; i< model.boxes.size(); i++){
-				CommandBox temp = model.boxes.get(i);
+			for (int i = 0; i< model.level1.boxes.size(); i++){
+				CommandBox temp = model.level1.boxes.get(i);
 				if (x > temp.cur_x && x < temp.cur_x+CommandBox.width &&
 					y > temp.cur_y && y < temp.cur_y + CommandBox.height) {
 					

@@ -4,8 +4,9 @@ import org.newdawn.slick.*;
 import java.awt.Font;
 import org.newdawn.slick.font.*;
 
-public class Level1{
-	//CommandBoxes
+
+public class SandboxLevel {
+//CommandBoxes
 		CommandBox commandbox_1;
 		CommandBox commandbox_2;
 		CommandBox commandbox_3;
@@ -17,6 +18,11 @@ public class Level1{
 		CommandBox commandbox_9;
 		CommandBox commandbox_10;
 		CommandBox commandbox_11;
+    CommandBox commandbox_12;
+    CommandBox commandbox_13;
+    CommandBox commandbox_14;
+    CommandBox commandbox_15;
+    CommandBox commandbox_16;
 		
 		String description;
 		
@@ -31,36 +37,36 @@ public class Level1{
 		
 		Font font1;
 		TrueTypeFont font2;
-    ArrayList<CommandBox> boxes;
 		
-		public Level1(Model m, GameContainer gc){
+		public SandboxLevel(Model m, GameContainer gc){
 			this.model = m;
 			
-			commandbox_1 = new CommandBox(40, 200, "clean counter");
-			commandbox_2 = new CommandBox(40, 260, "clean red plate");
-			commandbox_3 = new CommandBox(180, 200, "clean black plate");
-			commandbox_4 = new CommandBox(180, 260, "clean fork");
-			commandbox_5 = new CommandBox(40, 320, "clean knife");
-			commandbox_6 = new CommandBox(40, 380, "clean refrigerator");
-			commandbox_7 = new CommandBox(40, 440, "walk to living room");
-			commandbox_8 = new CommandBox(180, 320, "turn on TV");
-			commandbox_9 = new CommandBox(180, 380, "plug sink");
-			commandbox_10 = new CommandBox(180, 440, "run hot water");
-			commandbox_11 = new CommandBox(40, 500, "add soap to water");
+			commandbox_1 = new CommandBox(40, 200, "if fridge full jump to top");
+			commandbox_2 = new CommandBox(40, 260, "take out next item in fridge");
+			commandbox_3 = new CommandBox(180, 200, "dump item on floor");
+			commandbox_4 = new CommandBox(180, 260, "while standing on floor");
+			commandbox_5 = new CommandBox(40, 320, "end repeated code");
+			commandbox_6 = new CommandBox(40, 380, "take off shoes");
+			commandbox_7 = new CommandBox(40, 440, "jump up and down ");
+			commandbox_8 = new CommandBox(180, 320, "if fell down, roll around");
+			commandbox_9 = new CommandBox(180, 380, "if fell down, get up");
+			commandbox_10 = new CommandBox(180, 440, "dump soap on floor");
+			commandbox_11 = new CommandBox(40, 500, "get soap");
+      //commandbox_12 = new CommandBox(
 			
-		  boxes = new ArrayList<CommandBox>();	
-			boxes.add(0, commandbox_1);
-			boxes.add(1, commandbox_2);
-			boxes.add(2, commandbox_3);
-			boxes.add(3,commandbox_4);
-			boxes.add(4, commandbox_5);
-			boxes.add(5,commandbox_6);
-			boxes.add(6, commandbox_7);
-			boxes.add(7, commandbox_8);
-			boxes.add(8, commandbox_9);
-			boxes.add(9, commandbox_10);
-			boxes.add(10, commandbox_11);
-			boxes.add(11, commandbox_11);
+			
+			model.boxes.add(0, commandbox_1);
+			model.boxes.add(1, commandbox_2);
+			model.boxes.add(2, commandbox_3);
+			model.boxes.add(3,commandbox_4);
+			model.boxes.add(4, commandbox_5);
+			model.boxes.add(5,commandbox_6);
+			model.boxes.add(6, commandbox_7);
+			model.boxes.add(7, commandbox_8);
+			model.boxes.add(8, commandbox_9);
+			model.boxes.add(9, commandbox_10);
+			model.boxes.add(10, commandbox_11);
+			model.boxes.add(11, commandbox_11);
 			String eol = System.getProperty("line.separator");
 			description = "Welcome to Kitchen Disaster!\n"+ eol+" You are tasked with giving instructions to a robot to" +eol+
 					" make peanut butter sandwiches for your family.  But alas, your children have left the " +
@@ -79,6 +85,11 @@ public class Level1{
 			tf3.setText("make a peanut butter sandwiches for your family.");
 			tf4.setText("But alas, your children have left the kitchen a complete mess! " );
 			tf5.setText("Drag commands to the stack!");
+			tf1.setConsumeEvents(false);
+			tf2.setConsumeEvents(false);
+			tf3.setConsumeEvents(false);
+			tf4.setConsumeEvents(false);
+			tf5.setConsumeEvents(false);
 			tf_list = new ArrayList<TextField>();
 			tf_list.add(tf1);
 			tf_list.add(tf2);

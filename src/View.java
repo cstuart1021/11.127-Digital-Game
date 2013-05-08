@@ -32,9 +32,9 @@ public class View {
 		//draw command boxes
 		else if (model.cur_screen == Model.Screen.LEVEL1) {
 			g.setBackground(Color.black);
-			for (int x = 0; x < model.boxes.size(); x++) {
+			for (int x = 0; x < model.level1.boxes.size(); x++) {
 				
-				CommandBox temp_box = model.boxes.get(x);
+				CommandBox temp_box = model.level1.boxes.get(x);
 				g.setColor(temp_box.rect_color);
 				temp_box.render();
 				g.setColor(temp_box.text_color);
