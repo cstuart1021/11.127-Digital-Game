@@ -214,6 +214,39 @@ public class Level2Materials extends Level {
 			//the plates/bread and supplies in any order but need to get the supplies before starting to make the sandwich. 
 		}
 		
+		if (containsCommandBox1 &&
+				containsCommandBox2 &&
+				containsCommandBox3 &&
+				containsCommandBox4 &&
+				containsCommandBox5 &&
+				containsCommandBox6 &&
+				containsCommandBox7 &&
+				containsCommandBox8 &&
+				containsCommandBox9 &&
+				containsCommandBox10 &&
+				containsCommandBox11 &&
+				containsCommandBox12 &&
+				containsCommandBox13 &&
+				containsCommandBox14 &&
+				containsCommandBox15 &&
+				containsCommandBox16 &&
+				containsCommandBox17 &&
+				containsCommandBox18 &&
+				containsCommandBox19 &&
+				containsCommandBox20 &&
+				containsCommandBox21 &&
+				containsCommandBox22 &&
+				containsCommandBox23 &&
+				containsCommandBox24 ) {
+			model.cur_prog = Model.Progress.SUCCESS;
+			model.cur_error = "Done!";
+		} else {
+			model.cur_prog = Model.Progress.ERROR;
+			model.cur_error = "You didn't get enough stuff!";
+		}
+				
+				
+		
 		
 	}
 

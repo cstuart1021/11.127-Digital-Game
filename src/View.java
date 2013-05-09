@@ -68,11 +68,15 @@ public class View {
 		  // draw error message	
 			if (model.cur_prog == Model.Progress.ERROR){
 				g.setColor(Color.red);
-				g.drawString(model.cur_error, 100, 140);
+			
 			} else if (model.cur_prog == Model.Progress.SUCCESS) {
 				g.setColor(Color.green);
-				g.drawString(model.cur_error, 100, 140);
+
 			}
+			if (model.cur_prog != Model.Progress.WORK){
+				g.drawString(model.cur_error, 350, 140);
+			}
+
       // draw paragraph
 			ArrayList<TextField> tf_list = model.cur_level.getTF();
 			for (int x = 0; x<tf_list.size(); x++){
