@@ -89,9 +89,7 @@ public class Model {
 		error_3 = " stay on task!";
 		level3_error = "Looks like something went wrong!";
 		next = new Rectangle( 500,500,100,50);
-		back = new Rectangle(10, 540, 50, 50);
-
-
+		back = new Rectangle(10, 700, 50, 50);
 	}
 	public void modifyStack() {
 

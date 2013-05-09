@@ -64,10 +64,7 @@ public class View {
 			g.drawString("Back", model.back.getCenterX() - 15, model.back.getCenterY() - 5);
 			// draw stack 
 			g.setColor(Color.white);
-			if(model.cur_level == model.level3){
-				model.level3.stack.render(g);
-			}else
-				model.level1.stack.render(g);
+			model.cur_level.getStack().render(g);
 			// draw error message	
 			if (model.cur_prog == Model.Progress.ERROR){
 				g.setColor(Color.red);
@@ -76,6 +73,21 @@ public class View {
 				g.setColor(Color.green);
 				g.drawString(model.cur_error, 140, model.cur_level.getTF().size()*20+40);
 			}
+			// draw paragraph
+
+
+			//		  // draw error message	
+			//			if (model.cur_prog == Model.Progress.ERROR){
+			//				g.setColor(Color.red);
+			//			
+			//			} else if (model.cur_prog == Model.Progress.SUCCESS) {
+			//				g.setColor(Color.green);
+			//
+			//			}
+			//			if (model.cur_prog != Model.Progress.WORK){
+			//				g.drawString(model.cur_error, 350, model.cur_level.getTF().size()*20+40);
+			//			}
+
 			// draw paragraph
 			ArrayList<TextField> tf_list = model.cur_level.getTF();
 			for (int x = 0; x<tf_list.size(); x++){

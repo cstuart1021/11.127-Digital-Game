@@ -46,30 +46,30 @@ public class Level2Materials extends Level {
 	public Level2Materials(Model m) {
 		this.model = m;
 		
-		commandbox_1 = new CommandBox(40, 300, "walk to fridge");
-		commandbox_2 = new CommandBox(40, 340, "open to fridge");
-		commandbox_3 = new CommandBox(40, 380, "get bread");
-		commandbox_4 = new CommandBox(40, 420, "walk to drawer");
-		commandbox_5 = new CommandBox(40, 460, "open drawer");
-		commandbox_6 = new CommandBox(40, 460, "get knife");
-		commandbox_7 = new CommandBox(40, 500, "get spoon");
-		commandbox_8 = new CommandBox(40, 540, "get fork");
-		commandbox_9 = new CommandBox(40, 580, "walk to cabinet");
-		commandbox_10 = new CommandBox(40, 620, "open cabinet");
-		commandbox_11 = new CommandBox(40, 660, "get bowl");
-		commandbox_12 = new CommandBox(40, 700, "get peanut butter");
-		commandbox_13 = new CommandBox(40, 740, "get jelly");
-		commandbox_14 = new CommandBox(40, 780, "open bottle");
-		commandbox_15 = new CommandBox(40, 820, "spread on bread");
-		commandbox_16 = new CommandBox(40, 860, "lay bread on plate");
-		commandbox_17 = new CommandBox(40, 900, "close bottle");
-		commandbox_18 = new CommandBox(40, 940, "close slices of bread to make sandwich");
-		commandbox_19 = new CommandBox(40, 980, "return bread");
-		commandbox_20 = new CommandBox(40, 1020, "place knife in sink");
-		commandbox_21 = new CommandBox(40, 1060, "place fork in sink");
-		commandbox_22 = new CommandBox(40, 1100, "get plate");
-		commandbox_23 = new CommandBox(40, 1140, "place spoon in sink");
-		commandbox_24 = new CommandBox(40, 1180, "place plate in sink");
+		commandbox_1 = new CommandBox(40, 100, "walk to fridge");
+		commandbox_2 = new CommandBox(40, 140, "open to fridge");
+		commandbox_3 = new CommandBox(40, 180, "get bread");
+		commandbox_4 = new CommandBox(40, 220, "walk to drawer");
+		commandbox_5 = new CommandBox(40, 260, "open drawer");
+		commandbox_6 = new CommandBox(40, 300, "get knife");
+		commandbox_7 = new CommandBox(40, 340, "get spoon");
+		commandbox_8 = new CommandBox(40, 380, "get fork");
+		commandbox_9 = new CommandBox(40, 420, "walk to cabinet");
+		commandbox_10 = new CommandBox(40, 460, "open cabinet");
+		commandbox_11 = new CommandBox(40, 500, "get bowl");
+		commandbox_12 = new CommandBox(40, 540, "get peanut butter");
+		commandbox_13 = new CommandBox(180, 100, "get jelly");
+		commandbox_14 = new CommandBox(180, 140, "open bottle");
+		commandbox_15 = new CommandBox(180, 180, "spread on bread");
+		commandbox_16 = new CommandBox(180, 220, "lay bread on plate");
+		commandbox_17 = new CommandBox(180, 260, "close bottle");
+		commandbox_18 = new CommandBox(180, 300, "close slices of bread to make sandwich");
+		commandbox_19 = new CommandBox(180, 340, "return bread");
+		commandbox_20 = new CommandBox(180, 380, "place knife in sink");
+		commandbox_21 = new CommandBox(180, 420, "place fork in sink");
+		commandbox_22 = new CommandBox(180, 460, "get plate");
+		commandbox_23 = new CommandBox(180, 500, "place spoon in sink");
+		commandbox_24 = new CommandBox(180, 540, "place plate in sink");
 		
 		boxes = new ArrayList<CommandBox>();
 		boxes.add(0, commandbox_1);
@@ -213,6 +213,39 @@ public class Level2Materials extends Level {
 			//not sure how to take into account that fact that some off the boxes need to be in order and some dont. they can get
 			//the plates/bread and supplies in any order but need to get the supplies before starting to make the sandwich. 
 		}
+		
+		if (containsCommandBox1 &&
+				containsCommandBox2 &&
+				containsCommandBox3 &&
+				containsCommandBox4 &&
+				containsCommandBox5 &&
+				containsCommandBox6 &&
+				containsCommandBox7 &&
+				containsCommandBox8 &&
+				containsCommandBox9 &&
+				containsCommandBox10 &&
+				containsCommandBox11 &&
+				containsCommandBox12 &&
+				containsCommandBox13 &&
+				containsCommandBox14 &&
+				containsCommandBox15 &&
+				containsCommandBox16 &&
+				containsCommandBox17 &&
+				containsCommandBox18 &&
+				containsCommandBox19 &&
+				containsCommandBox20 &&
+				containsCommandBox21 &&
+				containsCommandBox22 &&
+				containsCommandBox23 &&
+				containsCommandBox24 ) {
+			model.cur_prog = Model.Progress.SUCCESS;
+			model.cur_error = "Done!";
+		} else {
+			model.cur_prog = Model.Progress.ERROR;
+			model.cur_error = "You didn't get enough stuff!";
+		}
+				
+				
 		
 		
 	}

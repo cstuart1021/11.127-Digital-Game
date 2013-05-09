@@ -135,7 +135,15 @@ public class Level1 extends Level{
 				}
 				
 			}
-			if (! added_soap) {
+			if (! contains_plug) {
+				model.cur_error = "The water is escaping!";
+				model.cur_prog = Model.Progress.ERROR;
+			}
+			else if (! ran_water) {
+				model.cur_error = "no water!";
+				model.cur_prog = Model.Progress.ERROR;
+			}
+			else if (! added_soap) {
 				model.cur_error = model.error_2;
 				model.cur_prog = Model.Progress.ERROR;
 			} else if ( wrong) {
