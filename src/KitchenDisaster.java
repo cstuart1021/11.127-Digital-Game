@@ -60,7 +60,7 @@ public class KitchenDisaster extends BasicGame
      
      
  
-     app.setDisplayMode(800, 600, false);
+     app.setDisplayMode(1200, 1200, false);
      app.start();
   }
   
