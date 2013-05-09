@@ -5,7 +5,7 @@ import java.awt.Font;
 import org.newdawn.slick.font.*;
 
 
-public class SandboxLevel {
+public class SandboxLevel extends Level {
 //CommandBoxes
 		CommandBox commandbox_1;
 		CommandBox commandbox_2;
@@ -24,7 +24,6 @@ public class SandboxLevel {
     CommandBox commandbox_15;
     CommandBox commandbox_16;
 		
-		String description;
 		
 		Model model;
 		
@@ -37,14 +36,17 @@ public class SandboxLevel {
 		
 		Font font1;
 		TrueTypeFont font2;
-		
+    ArrayList<CommandBox> boxes;
+	
+    Stack stack = new Stack(600, 40, 10);
+
 		public SandboxLevel(Model m, GameContainer gc){
 			this.model = m;
 			
 			commandbox_1 = new CommandBox(40, 200, "if fridge full jump to top");
 			commandbox_2 = new CommandBox(40, 260, "take out next item in fridge");
 			commandbox_3 = new CommandBox(180, 200, "dump item on floor");
-			commandbox_4 = new CommandBox(180, 260, "while standing on floor");
+			commandbox_4 = new CommandBox(180, 260, "loop while standing on floor");
 			commandbox_5 = new CommandBox(40, 320, "end repeated code");
 			commandbox_6 = new CommandBox(40, 380, "take off shoes");
 			commandbox_7 = new CommandBox(40, 440, "jump up and down ");
@@ -52,50 +54,38 @@ public class SandboxLevel {
 			commandbox_9 = new CommandBox(180, 380, "if fell down, get up");
 			commandbox_10 = new CommandBox(180, 440, "dump soap on floor");
 			commandbox_11 = new CommandBox(40, 500, "get soap");
-      //commandbox_12 = new CommandBox(
+      commandbox_12 = new CommandBox(40,140, "get pitcher of water");
+      commandbox_13 = new CommandBox(80, 140, "walk to microwave");
+      commandbox_14 = new CommandBox(40,80, "upend item");
+      commandbox_15 = new CommandBox(80, 80, "walk to living room");
+      commandbox_15 = new CommandBox(80, 500, "invite friends over");
 			
-			
-			model.boxes.add(0, commandbox_1);
-			model.boxes.add(1, commandbox_2);
-			model.boxes.add(2, commandbox_3);
-			model.boxes.add(3,commandbox_4);
-			model.boxes.add(4, commandbox_5);
-			model.boxes.add(5,commandbox_6);
-			model.boxes.add(6, commandbox_7);
-			model.boxes.add(7, commandbox_8);
-			model.boxes.add(8, commandbox_9);
-			model.boxes.add(9, commandbox_10);
-			model.boxes.add(10, commandbox_11);
-			model.boxes.add(11, commandbox_11);
+		  boxes = new ArrayList<CommandBox>();	
+      System.out.println("added box");
+			boxes.add( commandbox_1);
+			boxes.add( commandbox_2);
+			boxes.add( commandbox_3);
+			boxes.add(commandbox_4);
+			boxes.add( commandbox_5);
+			boxes.add(commandbox_6);
+			boxes.add( commandbox_7);
+			boxes.add( commandbox_8);
+			boxes.add( commandbox_9);
+			boxes.add( commandbox_10);
+			boxes.add( commandbox_11);
+			boxes.add( commandbox_11);
+      boxes.add(commandbox_12);
+      boxes.add(commandbox_13);
+      boxes.add(commandbox_14);
+      boxes.add(commandbox_15);
+
 			String eol = System.getProperty("line.separator");
-			description = "Welcome to Kitchen Disaster!\n"+ eol+" You are tasked with giving instructions to a robot to" +eol+
-					" make peanut butter sandwiches for your family.  But alas, your children have left the " +
-					"kitchen a complete mess!  Clean it up!";
 			
 			font1 = new Font("Times New Roman", Font.PLAIN, 15);
 			font2 = new TrueTypeFont(font1, false);
-			
-			tf1 = new TextField(gc,font2, 100, 40, 400, 20);
-			tf2 = new TextField(gc,font2, 100, 60, 400, 20);
-			tf3 = new TextField(gc,font2, 100, 80, 400, 20);
-			tf4 = new TextField(gc,font2, 100, 100, 400, 20);
-			tf5 = new TextField(gc, font2, 100, 120, 400, 20);
-			tf1.setText("Welcome to Kitchen Disaster!");
-			tf2.setText("You are tasked with giving instructions to a robot to");
-			tf3.setText("make a peanut butter sandwiches for your family.");
-			tf4.setText("But alas, your children have left the kitchen a complete mess! " );
-			tf5.setText("Drag commands to the stack!");
-			tf1.setConsumeEvents(false);
-			tf2.setConsumeEvents(false);
-			tf3.setConsumeEvents(false);
-			tf4.setConsumeEvents(false);
-			tf5.setConsumeEvents(false);
 			tf_list = new ArrayList<TextField>();
-			tf_list.add(tf1);
-			tf_list.add(tf2);
-			tf_list.add(tf3);
-			tf_list.add(tf4);
-			tf_list.add(tf5);
+			
+	
 			
 		}
 		
@@ -109,8 +99,8 @@ public class SandboxLevel {
 			boolean ran_water = false;
 			boolean added_soap = false;
 			boolean wrong = false;
-			for (int i = 0 ; i< model.stack.num_boxes; i++) {
-				CommandBox temp = model.stack.box_stack[i];
+			for (int i = 0 ; i< stack.num_boxes; i++) {
+				CommandBox temp = stack.box_stack[i];
 				if (temp == null ){
 					continue;
 				}
@@ -156,6 +146,56 @@ public class SandboxLevel {
 				model.cur_prog = Model.Progress.SUCCESS;
 			}
 			
+		}
+
+		@Override
+		public void render() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		ArrayList<CommandBox> getBoxes() {
+			// TODO Auto-generated method stub
+			return boxes;
+		}
+
+		@Override
+		Stack getStack() {
+			// TODO Auto-generated method stub
+			return stack;
+		}
+
+		@Override
+		ArrayList<TextField> getTF() {
+			// TODO Auto-generated method stub
+			return tf_list;
+		}
+
+		@Override
+		void setPrevLevel(Level level) {
+			// TODO Auto-generated method stub
+			prev_level = level;
+			
+		}
+
+		@Override
+		Level getPrevLevel() {
+			// TODO Auto-generated method stub
+			return prev_level;
+		}
+
+		@Override
+		void setNextLevel(Level level) {
+			// TODO Auto-generated method stub
+			next_level = level;
+			
+		}
+
+		@Override
+		Level getNextLevel() {
+			// TODO Auto-generated method stub
+			return next_level;
 		}
 
 }

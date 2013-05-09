@@ -4,7 +4,7 @@ import org.newdawn.slick.*;
 import java.awt.Font;
 import org.newdawn.slick.font.*;
 
-public class Level1{
+public class Level1 extends Level{
 	//CommandBoxes
 		CommandBox commandbox_1;
 		CommandBox commandbox_2;
@@ -32,6 +32,12 @@ public class Level1{
 		Font font1;
 		TrueTypeFont font2;
     ArrayList<CommandBox> boxes;
+    Level prev_level;
+    Level next_level;
+    
+    
+
+	  Stack stack = new Stack(600, 40, 10);
 		
 		public Level1(Model m, GameContainer gc){
 			this.model = m;
@@ -49,18 +55,18 @@ public class Level1{
 			commandbox_11 = new CommandBox(40, 500, "add soap to water");
 			
 		  boxes = new ArrayList<CommandBox>();	
-			boxes.add(0, commandbox_1);
-			boxes.add(1, commandbox_2);
-			boxes.add(2, commandbox_3);
-			boxes.add(3,commandbox_4);
-			boxes.add(4, commandbox_5);
-			boxes.add(5,commandbox_6);
-			boxes.add(6, commandbox_7);
-			boxes.add(7, commandbox_8);
-			boxes.add(8, commandbox_9);
-			boxes.add(9, commandbox_10);
-			boxes.add(10, commandbox_11);
-			boxes.add(11, commandbox_11);
+			boxes.add( commandbox_1);
+			boxes.add( commandbox_2);
+			boxes.add( commandbox_3);
+			boxes.add(commandbox_4);
+			boxes.add( commandbox_5);
+			boxes.add(commandbox_6);
+			boxes.add( commandbox_7);
+			boxes.add( commandbox_8);
+			boxes.add(commandbox_9);
+			boxes.add(commandbox_10);
+			boxes.add( commandbox_11);
+			boxes.add( commandbox_11);
 			String eol = System.getProperty("line.separator");
 			description = "Welcome to Kitchen Disaster!\n"+ eol+" You are tasked with giving instructions to a robot to" +eol+
 					" make peanut butter sandwiches for your family.  But alas, your children have left the " +
@@ -98,8 +104,8 @@ public class Level1{
 			boolean ran_water = false;
 			boolean added_soap = false;
 			boolean wrong = false;
-			for (int i = 0 ; i< model.stack.num_boxes; i++) {
-				CommandBox temp = model.stack.box_stack[i];
+			for (int i = 0 ; i< stack.num_boxes; i++) {
+				CommandBox temp = stack.box_stack[i];
 				if (temp == null ){
 					continue;
 				}
@@ -145,6 +151,58 @@ public class Level1{
 				model.cur_prog = Model.Progress.SUCCESS;
 			}
 			
+		}
+
+		@Override
+		public void render() {
+			// TODO Auto-generated method stub
+			
+			
+			
+		}
+
+		@Override
+		ArrayList<CommandBox> getBoxes() {
+			// TODO Auto-generated method stub
+			return boxes;
+		}
+
+		@Override
+		Stack getStack() {
+			// TODO Auto-generated method stub
+			return stack;
+		}
+
+		@Override
+		ArrayList<TextField> getTF() {
+			// TODO Auto-generated method stub
+			return tf_list;
+		}
+
+		@Override
+		void setPrevLevel(Level level) {
+			// TODO Auto-generated method stub
+			prev_level = level;
+			
+		}
+
+		@Override
+		Level getPrevLevel() {
+			// TODO Auto-generated method stub
+			return prev_level;
+		}
+
+		@Override
+		void setNextLevel(Level level) {
+			// TODO Auto-generated method stub
+			next_level = level;
+			
+		}
+
+		@Override
+		Level getNextLevel() {
+			// TODO Auto-generated method stub
+			return next_level;
 		}
 
 }
