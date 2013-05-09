@@ -4,8 +4,9 @@ import org.newdawn.slick.*;
 import java.awt.Font;
 import org.newdawn.slick.font.*;
 
-public class Level1 extends Level{
-	//CommandBoxes
+
+public class SandboxLevel extends Level {
+//CommandBoxes
 		CommandBox commandbox_1;
 		CommandBox commandbox_2;
 		CommandBox commandbox_3;
@@ -17,8 +18,12 @@ public class Level1 extends Level{
 		CommandBox commandbox_9;
 		CommandBox commandbox_10;
 		CommandBox commandbox_11;
+    CommandBox commandbox_12;
+    CommandBox commandbox_13;
+    CommandBox commandbox_14;
+    CommandBox commandbox_15;
+    CommandBox commandbox_16;
 		
-		String description;
 		
 		Model model;
 		
@@ -32,29 +37,31 @@ public class Level1 extends Level{
 		Font font1;
 		TrueTypeFont font2;
     ArrayList<CommandBox> boxes;
-    Level prev_level;
-    Level next_level;
-    
-    
+	
+    Stack stack = new Stack(600, 40, 10);
 
-	  Stack stack = new Stack(600, 40, 10);
-		
-		public Level1(Model m, GameContainer gc){
+		public SandboxLevel(Model m, GameContainer gc){
 			this.model = m;
 			
-			commandbox_1 = new CommandBox(40, 200, "clean counter");
-			commandbox_2 = new CommandBox(40, 260, "clean red plate");
-			commandbox_3 = new CommandBox(180, 200, "clean black plate");
-			commandbox_4 = new CommandBox(180, 260, "clean fork");
-			commandbox_5 = new CommandBox(40, 320, "clean knife");
-			commandbox_6 = new CommandBox(40, 380, "clean refrigerator");
-			commandbox_7 = new CommandBox(40, 440, "walk to living room");
-			commandbox_8 = new CommandBox(180, 320, "turn on TV");
-			commandbox_9 = new CommandBox(180, 380, "plug sink");
-			commandbox_10 = new CommandBox(180, 440, "run hot water");
-			commandbox_11 = new CommandBox(40, 500, "add soap to water");
+			commandbox_1 = new CommandBox(40, 200, "if fridge full jump to top");
+			commandbox_2 = new CommandBox(40, 260, "take out next item in fridge");
+			commandbox_3 = new CommandBox(180, 200, "dump item on floor");
+			commandbox_4 = new CommandBox(180, 260, "loop while standing on floor");
+			commandbox_5 = new CommandBox(40, 320, "end repeated code");
+			commandbox_6 = new CommandBox(40, 380, "take off shoes");
+			commandbox_7 = new CommandBox(40, 440, "jump up and down ");
+			commandbox_8 = new CommandBox(180, 320, "if fell down, roll around");
+			commandbox_9 = new CommandBox(180, 380, "if fell down, get up");
+			commandbox_10 = new CommandBox(180, 440, "dump soap on floor");
+			commandbox_11 = new CommandBox(40, 500, "get soap");
+      commandbox_12 = new CommandBox(40,140, "get pitcher of water");
+      commandbox_13 = new CommandBox(80, 140, "walk to microwave");
+      commandbox_14 = new CommandBox(40,80, "upend item");
+      commandbox_15 = new CommandBox(80, 80, "walk to living room");
+      commandbox_15 = new CommandBox(80, 500, "invite friends over");
 			
 		  boxes = new ArrayList<CommandBox>();	
+      System.out.println("added box");
 			boxes.add( commandbox_1);
 			boxes.add( commandbox_2);
 			boxes.add( commandbox_3);
@@ -63,34 +70,22 @@ public class Level1 extends Level{
 			boxes.add(commandbox_6);
 			boxes.add( commandbox_7);
 			boxes.add( commandbox_8);
-			boxes.add(commandbox_9);
-			boxes.add(commandbox_10);
+			boxes.add( commandbox_9);
+			boxes.add( commandbox_10);
 			boxes.add( commandbox_11);
 			boxes.add( commandbox_11);
+      boxes.add(commandbox_12);
+      boxes.add(commandbox_13);
+      boxes.add(commandbox_14);
+      boxes.add(commandbox_15);
+
 			String eol = System.getProperty("line.separator");
-			description = "Welcome to Kitchen Disaster!\n"+ eol+" You are tasked with giving instructions to a robot to" +eol+
-					" make peanut butter sandwiches for your family.  But alas, your children have left the " +
-					"kitchen a complete mess!  Clean it up!";
 			
 			font1 = new Font("Times New Roman", Font.PLAIN, 15);
 			font2 = new TrueTypeFont(font1, false);
-			
-			tf1 = new TextField(gc,font2, 100, 40, 400, 20);
-			tf2 = new TextField(gc,font2, 100, 60, 400, 20);
-			tf3 = new TextField(gc,font2, 100, 80, 400, 20);
-			tf4 = new TextField(gc,font2, 100, 100, 400, 20);
-			tf5 = new TextField(gc, font2, 100, 120, 400, 20);
-			tf1.setText("Welcome to Kitchen Disaster!");
-			tf2.setText("You are tasked with giving instructions to a robot to");
-			tf3.setText("make peanut butter sandwiches for your family.");
-			tf4.setText("But alas, your children have left the kitchen a complete mess! " );
-			tf5.setText("Drag commands to the stack!");
 			tf_list = new ArrayList<TextField>();
-			tf_list.add(tf1);
-			tf_list.add(tf2);
-			tf_list.add(tf3);
-			tf_list.add(tf4);
-			tf_list.add(tf5);
+			
+	
 			
 		}
 		
@@ -135,15 +130,7 @@ public class Level1 extends Level{
 				}
 				
 			}
-			if (! contains_plug) {
-				model.cur_error = "The water is escaping!";
-				model.cur_prog = Model.Progress.ERROR;
-			}
-			else if (! ran_water) {
-				model.cur_error = "no water!";
-				model.cur_prog = Model.Progress.ERROR;
-			}
-			else if (! added_soap) {
+			if (! added_soap) {
 				model.cur_error = model.error_2;
 				model.cur_prog = Model.Progress.ERROR;
 			} else if ( wrong) {
@@ -164,8 +151,6 @@ public class Level1 extends Level{
 		@Override
 		public void render() {
 			// TODO Auto-generated method stub
-			
-			
 			
 		}
 

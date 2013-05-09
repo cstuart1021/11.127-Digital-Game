@@ -18,8 +18,7 @@ public class KitchenDisaster extends BasicGame
   public void init(GameContainer gc) throws SlickException
   {
 	  
-	  model = new Model();
-	  model.level1 = new Level1(model, gc);
+	  model = new Model(gc);
 	  view = new View(model);
 	  controller = new Controller(model);
 	  input = gc.getInput();
@@ -61,7 +60,7 @@ public class KitchenDisaster extends BasicGame
      
      
  
-     app.setDisplayMode(800, 600, false);
+     app.setDisplayMode(1200, 1200, false);
      app.start();
   }
   
