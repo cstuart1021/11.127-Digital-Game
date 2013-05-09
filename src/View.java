@@ -53,7 +53,7 @@ public class View {
 			} else if (model.cur_prog == Model.Progress.SUCCESS) {
 				g.setColor(Color.green);
 				g.drawString(model.cur_error, 100, 140);
-			}
+			} 
 			for (int x = 0; x<model.level1.tf_list.size(); x++){
 				TextField tf = model.level1.tf_list.get(x);
 				tf.setBorderColor(Color.black);

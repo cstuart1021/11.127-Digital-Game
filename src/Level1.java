@@ -75,7 +75,7 @@ public class Level1{
 			tf5 = new TextField(gc, font2, 100, 120, 400, 20);
 			tf1.setText("Welcome to Kitchen Disaster!");
 			tf2.setText("You are tasked with giving instructions to a robot to");
-			tf3.setText("make a peanut butter sandwiches for your family.");
+			tf3.setText("make peanut butter sandwiches for your family.");
 			tf4.setText("But alas, your children have left the kitchen a complete mess! " );
 			tf5.setText("Drag commands to the stack!");
 			tf1.setConsumeEvents(false);
