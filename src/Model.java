@@ -82,7 +82,7 @@ public class Model {
 		error_2 = " no soapy hot water!!";
 		error_3 = " stay on task!";
     next = new Rectangle( 500,500,100,50);
-    back = new Rectangle(10, 540, 50, 50);
+    back = new Rectangle(10, 700, 50, 50);
 
 		
 	}

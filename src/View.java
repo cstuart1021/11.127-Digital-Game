@@ -64,7 +64,7 @@ public class View {
       g.drawString("Back", model.back.getCenterX() - 15, model.back.getCenterY() - 5);
       // draw stack 
       g.setColor(Color.white);
-			model.level1.stack.render(g);
+			model.cur_level.getStack().render(g);
 		  // draw error message	
 			if (model.cur_prog == Model.Progress.ERROR){
 				g.setColor(Color.red);
