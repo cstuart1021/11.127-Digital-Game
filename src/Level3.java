@@ -41,6 +41,8 @@ public class Level3 extends Level{
 
 
 	Stack stack = new Stack(600, 40, 20);
+	
+	
 
 
 	//conditions
@@ -54,6 +56,15 @@ public class Level3 extends Level{
 	boolean jelly = false;
 	boolean sandwich = false;
 	int sandwich_count = 0;
+	
+	boolean materials_error;
+	//String error1;
+	//String error2;
+	//String error3;
+	boolean bread_error;
+	boolean incomplete_sandwich_error;
+	boolean efficiency_error;
+	boolean no_end_error;
 
 	public Level3(Model m, GameContainer gc){
 		this.model = m;
@@ -119,27 +130,50 @@ public class Level3 extends Level{
 	}
 
 	public void run(){
-
+		sandwich_count = 0;
+		materials_error = false;
+		bread_error = false;
+		incomplete_sandwich_error = false;
+		efficiency_error = false;
+		no_end_error = false;
+		has_knife = false;
+		has_bread = false;
+		has_pb = false;
+		has_jelly = false;
+		has_plate = false;
+		bread_prepped = false;
+		pb = false;
+		jelly = false;
+		sandwich = false;
 		for (int i = 0 ; i< stack.num_boxes; i++) {
+			if(materials_error || bread_error || incomplete_sandwich_error || no_end_error)
+				break;
 			CommandBox temp = stack.box_stack[i];
 			if(temp == null){
-				//
+				continue;
 			}else if(!temp.str.equals(commandbox_11.str))
 				checkConditions(temp);
-			else{
-				int index = i+1;
+			else{ //temp = repeat20 block
+				int index = i; //index of repeat20 block
 				int end = 0;
+				//boolean test = true;
 				for(int j=0; j<20; j++){
+					if(materials_error || bread_error || incomplete_sandwich_error || no_end_error)
+						break;
 					do{
+						if(materials_error || bread_error || incomplete_sandwich_error || no_end_error)
+							break;
+						index++;
 						temp = stack.box_stack[index];
 						if (temp == null) {
-							index++;
 							continue;
 						}
 						checkConditions(temp);
-						index++;
-					} while(temp != null && !temp.str.equals(commandbox_12.str));
-					if(temp.str.equals(commandbox_12.str)){
+					} while((temp == null || !temp.str.equals(commandbox_12.str)) && (index < stack.box_stack.length));
+					if(index >= stack.box_stack.length){
+						no_end_error = true;
+						break;
+					}else if(temp != null && temp.str.equals(commandbox_12.str)){
 						end = index;
 						index = i+1; //reseting index to beginning of repeat
 					}
@@ -147,11 +181,37 @@ public class Level3 extends Level{
 				i=end;;
 			}
 		}
+		if(!(has_bread && has_knife && has_plate && has_pb && has_jelly))
+			materials_error = true;
 		if (sandwich_count == 20) {
 			model.cur_error = "Done!";
 			model.cur_prog = Model.Progress.SUCCESS;
+		}else if(sandwich_count > 0){
+			model.cur_error = "You don't have the right number of sandwiches.";
+			model.cur_prog = Model.Progress.ERROR;
+		}else if(materials_error){
+			model.cur_error = "Looks like you don't have everything you need.";
+			model.cur_prog = Model.Progress.ERROR;
+		}else if(bread_error){
+			model.cur_error = "Need bread out to spread the pb&j.";
+			model.cur_prog = Model.Progress.ERROR;
+		}else if(incomplete_sandwich_error){
+			model.cur_error = "Your sandwiches are incomplete.";
+			model.cur_prog = Model.Progress.ERROR;
+		}else if(sandwich){
+			model.cur_error = "Your sandwiches should be on a plate.";
+			model.cur_prog = Model.Progress.ERROR;
+		}else if(efficiency_error){
+			model.cur_error = "You don't need to get the same materials again!";
+			model.cur_prog = Model.Progress.ERROR;
+		}else if(sandwich_count == 0){
+			model.cur_error = "You haven't made any sandwiches.";
+			model.cur_prog = Model.Progress.ERROR;
+		}else if(no_end_error){
+			model.cur_error = "Your robot cannot make an infinite number of sandwiches!";
+			model.cur_prog = Model.Progress.ERROR;
 		}else{
-			model.cur_error = model.level3_error;
+			model.cur_error = "Looks like something went wrong.";
 			model.cur_prog = Model.Progress.ERROR;
 		}
 	}
@@ -161,30 +221,69 @@ public class Level3 extends Level{
 			//do nothing
 		}
 		else if (temp.str.equals(commandbox_1.str)){
-			has_bread = true;
+			if(has_bread)
+				efficiency_error = true;
+			else
+				has_bread = true;
 		}
 		else if (temp.str.equals(commandbox_2.str)) {
-			has_pb = true;
+			if(has_pb)
+				efficiency_error = true;
+			else
+				has_pb = true;
 		}
 		else if (temp.str.equals(commandbox_3.str)) {
-			has_jelly = true;
+			if(has_jelly)
+				efficiency_error = true;
+			else
+				has_jelly = true;
 		}
 		else if (temp.str.equals(commandbox_4.str)){
-			has_knife = true;
+			if(has_knife)
+				efficiency_error = true;
+			else
+				has_knife = true;
 		} else if (temp.str.equals(commandbox_5.str)){
-			has_plate = true;
-		} else if (temp.str.equals(commandbox_6.str) && has_bread){
-			bread_prepped = true;
-		} else if (temp.str.equals(commandbox_7.str) && bread_prepped && has_knife && has_pb){
-			pb = true; 
-		} else if (temp.str.equals(commandbox_8.str) && bread_prepped && has_knife && has_jelly){
-			jelly = true; 
-		} else if (temp.str.equals(commandbox_9.str) && pb && jelly){
-			sandwich = true;
-			bread_prepped = false;
-		} else if(temp.str.equals(commandbox_10.str) && sandwich){
-			sandwich_count++;
-			sandwich = false;
+			if(has_plate)
+				efficiency_error = true;
+			else
+				has_plate = true;
+		} else if (temp.str.equals(commandbox_6.str)){
+			if (has_bread)
+				bread_prepped = true;
+			else
+				materials_error = true;
+		} else if (temp.str.equals(commandbox_7.str)){
+			if(!(has_knife && has_jelly))
+				materials_error = true;
+			else{
+				if(!bread_prepped)
+					bread_error = true;
+				else
+					pb = true;
+			}	 
+		} else if (temp.str.equals(commandbox_8.str)){
+			if(!(has_knife && has_jelly))
+				materials_error = true;
+			else{
+				if(!bread_prepped)
+					bread_error = true;
+				else
+					jelly = true;
+			}
+		} else if (temp.str.equals(commandbox_9.str)){
+			if(pb && jelly){
+				sandwich = true;
+				bread_prepped = false;
+			}else
+				incomplete_sandwich_error = true;
+		} else if(temp.str.equals(commandbox_10.str)){
+			if (sandwich){
+				sandwich_count++;
+				sandwich = false;
+			}else{
+				incomplete_sandwich_error = true;
+			}
 		}
 	}
 

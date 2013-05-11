@@ -87,7 +87,6 @@ public class Model {
 		error_1 = "You do still have some messy things!";
 		error_2 = " no soapy hot water!!";
 		error_3 = " stay on task!";
-		level3_error = "Looks like something went wrong!";
 		next = new Rectangle( 500,500,100,50);
 		back = new Rectangle(10, 700, 50, 50);
 	}
