@@ -132,9 +132,13 @@ public class Level3 extends Level{
 				for(int j=0; j<20; j++){
 					do{
 						temp = stack.box_stack[index];
+						if (temp == null) {
+							index++;
+							continue;
+						}
 						checkConditions(temp);
 						index++;
-					} while(!temp.str.equals(commandbox_12.str));
+					} while(temp != null && !temp.str.equals(commandbox_12.str));
 					if(temp.str.equals(commandbox_12.str)){
 						end = index;
 						index = i+1; //reseting index to beginning of repeat

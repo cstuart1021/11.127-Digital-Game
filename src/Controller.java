@@ -121,6 +121,7 @@ public class Controller{
 				}else if (overButton(model.next,x,y) && model.cur_prog == Model.Progress.SUCCESS) {
 					model.over_next_1 = false;
 					model.cur_prog = Model.Progress.WORK;
+					model.cur_prog = Model.Progress.SUCCESS;
           model.cur_level = model.cur_level.getNextLevel();
           model.next_button_color = model.next_color;
 
