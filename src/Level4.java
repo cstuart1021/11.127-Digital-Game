@@ -31,7 +31,6 @@ public class Level4 extends Level {
 			TextField tf5;
 			TextField tf6;
 			TextField tf7;
-			TextField tf8;
 			ArrayList<TextField> tf_list;
 			
 			Font font1;
@@ -87,15 +86,13 @@ public class Level4 extends Level {
 				tf5 = new TextField(gc, font2, 100, 120, 400, 20);
 				tf6 = new TextField(gc, font2, 100, 140, 400, 20);
 				tf7 = new TextField(gc, font2, 100, 160, 400, 20);
-				tf8 = new TextField(gc, font2, 100, 180, 400, 20);
 				tf1.setText("The sandwiches are made! They are in a stack on");
-				tf2.setText("the counter but they need to go on plates.");
-				tf3.setText("Unfortunately, you forgot how many sandwiches you made!");
-				tf4.setText("In order to not waste time counting how many sandwiches" );
-				tf5.setText("you've made, use recursion to quickly put each of the ");
-				tf6.setText("sandwiches on a plate.");
-				tf7.setText("Hint: base case is when you should stop and recursive case is");
-				tf8.setText("the action you want to be repeated.");
+				tf2.setText("the counter but they need to go on plates. Unfortunately,");
+				tf3.setText("you forgot how many sandwiches you made! In order to not");
+				tf4.setText("waste time counting how many sandwiches you've made, use" );
+				tf5.setText("recursion to quickly put each of the sandwiches on a plate.");
+				tf6.setText("Hint: base case is when you should stop and recursive case is");
+				tf7.setText("the action you want to be repeated.");
 				tf_list = new ArrayList<TextField>();
 				tf_list.add(tf1);
 				tf_list.add(tf2);
@@ -104,7 +101,6 @@ public class Level4 extends Level {
 				tf_list.add(tf5);
 				tf_list.add(tf6);
 				tf_list.add(tf7);
-				tf_list.add(tf8);
 				
 			}
 			
