@@ -71,10 +71,6 @@ public class Level4 extends Level {
 				boxes.add(commandbox_10);
 				boxes.add( commandbox_11);
 				boxes.add( commandbox_11);
-				String eol = System.getProperty("line.separator");
-				description = "Welcome to Kitchen Disaster!\n"+ eol+" You are tasked with giving instructions to a robot to" +eol+
-						" make peanut butter sandwiches for your family.  But alas, your children have left the " +
-						"kitchen a complete mess!  Clean it up!";
 				
 				font1 = new Font("Times New Roman", Font.PLAIN, 15);
 				font2 = new TrueTypeFont(font1, false);
@@ -113,6 +109,7 @@ public class Level4 extends Level {
 				boolean start_recursive = false;
 				boolean pick_up_top = false;
 				boolean get_plate = false;
+				boolean trash = false;
 				boolean wrong = false;
 				boolean base_block = false;
 				boolean recurse_block = false;
@@ -125,7 +122,7 @@ public class Level4 extends Level {
 							!(base_block)){
 						end_recursive = true;
 						recurse_block = false;
-					} else if (temp.str.equals(commandbox_3.str) && start_base ){
+					}else if (temp.str.equals(commandbox_3.str) && start_base ){
 						no_sandwiches = true;
 					} else if (temp.str.equals(commandbox_4.str) && !(recurse_block)){
 						start_base = true;
@@ -140,6 +137,8 @@ public class Level4 extends Level {
 						recurse_block = true;
 					} else if (temp.str.equals(commandbox_8.str) && start_recursive){
 						pick_up_top = true;
+					} else if (temp.str.equals(commandbox_10.str)){
+						trash = true;
 					} else if (temp.str.equals(commandbox_11.str) && start_recursive) {
 						get_plate = true;
 					}  else {
@@ -151,7 +150,14 @@ public class Level4 extends Level {
 				wrong = wrong || !(end_recursive && no_sandwiches && start_base && on_plate 
 						&& end_base && start_recursive && pick_up_top && get_plate);
 			
-				if (wrong) {
+				if (!(start_base && end_base && start_recursive && end_recursive)){
+					model.cur_error = "Complete the cases";
+					model.cur_prog = Model.Progress.ERROR;
+				}
+				else if (trash){
+					model.cur_error = "Oh no! You are losing sandwiches";
+				}
+				else if (wrong) {
 					model.cur_error = "Wrong!";
 					model.cur_prog = Model.Progress.ERROR;
 				} 
