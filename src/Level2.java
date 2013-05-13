@@ -212,11 +212,7 @@ public class Level2 extends Level {
 		
 		
 		if (!(at_fridge && at_drawer && at_cabinet)){
-			model.cur_error = "You're passing a crucial location!";
-			model.cur_prog = Model.Progress.ERROR;
-		}
-		else if (fBlock || cBlock || dBlock){
-			model.cur_error = "You can't be at 2 places at once!";
+			model.cur_error = "You're not going to a crucial location!";
 			model.cur_prog = Model.Progress.ERROR;
 		}
 		else if (!(close_fridge && close_cabinet && close_drawer)){
