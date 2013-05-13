@@ -70,7 +70,6 @@ public class Level4 extends Level {
 				boxes.add(commandbox_9);
 				boxes.add(commandbox_10);
 				boxes.add( commandbox_11);
-				boxes.add( commandbox_11);
 				
 				font1 = new Font("Times New Roman", Font.PLAIN, 15);
 				font2 = new TrueTypeFont(font1, false);
@@ -113,6 +112,7 @@ public class Level4 extends Level {
 				boolean wrong = false;
 				boolean base_block = false;
 				boolean recurse_block = false;
+				
 				for (int i = 0 ; i< stack.num_boxes; i++) {
 					CommandBox temp = stack.box_stack[i];
 					

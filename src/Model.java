@@ -18,7 +18,7 @@ public class Model {
 	//Levels
 	Level1 level1;
 	SandboxLevel sandbox_level;
-	Level2Materials level2;
+	Level2 level2;
 	Level3 level3;
 	Level4 level4;
 
@@ -63,7 +63,7 @@ public class Model {
 		start_screen = new StartScreen();
 		level1 = new Level1(this, gc);
 		sandbox_level = new SandboxLevel(this, gc);
-		level2 = new Level2Materials(this);
+		level2 = new Level2(this, gc);
 		level3 = new Level3(this,gc);
 		level4 = new Level4(this, gc);
 		cur_level = start_screen;
