@@ -115,6 +115,7 @@ public class SandboxLevel extends Level {
 			boolean looping = false;
 			//boolean no_fridge_item = true;
 			boolean check_for_upend =false;
+			boolean fell= false;
 			
 			model.cur_prog = Model.Progress.WORK;
 			
@@ -136,7 +137,7 @@ public class SandboxLevel extends Level {
 				if (temp.str.equals(commandbox_12.str)&& !looping){
 					has_water = true;
 				}else if (temp.str.equals(commandbox_12.str) && looping){
-					model.cur_error = "You're flooding the kitchen! NOOOO";
+					model.cur_error = "You're flooding the kitchen! NOOOO!!!";
 					model.cur_prog = Model.Progress.ERROR;
 					return;
 				}
@@ -153,8 +154,38 @@ public class SandboxLevel extends Level {
 					model.cur_error = "You need to remove your item before getting more";
 					model.cur_prog=Model.Progress.ERROR;
 					return;
+				}else if (temp.str.equals(commandbox_5.str)){
+					looping = false;
 				}
-				
+				if (temp.str.equals(commandbox_10.str) && has_soap){
+					fell = true;
+					model.cur_error = "You got the floor all soapy, so you slipped a fell!  Now you can't get up! NOOOOOO";
+					model.cur_prog= Model.Progress.ERROR;
+					return;
+				}else if (temp.str.equals(commandbox_10.str ) && !has_soap){
+					model.cur_error = "You can't dump soap without the soap! You've caused the robot to start on fire!";
+					model.cur_prog= Model.Progress.ERROR;
+					return;
+				}
+				if (temp.str.equals(commandbox_8.str) && fell){
+					model.cur_error = "You fell down and are rolling around in the muck! That's disgusting.";
+					model.cur_prog = Model.Progress.ERROR;
+					return;
+				}
+				if (temp.str.equals(commandbox_9.str) && fell) {
+					model.cur_error = "You fell down and tried to get up again, but you fell down again because you're clumsy..";
+					model.cur_prog=Model.Progress.ERROR;
+					return;
+				}
+				if (temp.str.equals(commandbox_7.str) ){
+					fell = true;
+					model.cur_error = "you have fallen down!";
+				}
+				if (temp.str.equals(commandbox_15.str)) {
+					model.cur_error = "You invited your friends over for kitchen disaster!  They all hate you now.";
+					model.cur_prog = Model.Progress.ERROR;
+					return;
+				}
 				
 			}
 			
