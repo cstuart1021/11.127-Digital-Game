@@ -48,14 +48,14 @@ public class Level4 extends Level {
 				
 				commandbox_1 = new CommandBox(40, 200, "end resursive case");
 				commandbox_2 = new CommandBox(40, 260, "pick up all sandwiches");
-				commandbox_3 = new CommandBox(180, 200, "no sanwiches");
-				commandbox_4 = new CommandBox(180, 260, "start base case");
+				commandbox_3 = new CommandBox(210, 200, "no sanwiches");
+				commandbox_4 = new CommandBox(210, 260, "start base case");
 				commandbox_5 = new CommandBox(40, 320, "put sandwich on plate");
 				commandbox_6 = new CommandBox(40, 380, "end base case");
 				commandbox_7 = new CommandBox(40, 440, "start recursive case");
-				commandbox_8 = new CommandBox(180, 320, "pick up top sandwich");
-				commandbox_9 = new CommandBox(180, 380, "all sandwiches");
-				commandbox_10 = new CommandBox(180, 440, "put sanwich in the trash");
+				commandbox_8 = new CommandBox(210, 320, "pick up top sandwich");
+				commandbox_9 = new CommandBox(210, 380, "all sandwiches");
+				commandbox_10 = new CommandBox(210, 440, "put sanwich in the trash");
 				commandbox_11 = new CommandBox(40, 500, "get plate");
 				
 			  boxes = new ArrayList<CommandBox>();	
