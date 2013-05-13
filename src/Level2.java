@@ -127,10 +127,12 @@ public class Level2 extends Level {
 		boolean pb = false;
 		boolean j = false;
 		boolean plate = false;
-		boolean wrong = false;
+		boolean too_much = false;
 		boolean fBlock = false;
 		boolean dBlock = false;
 		boolean cBlock = false;
+		boolean food_place = true;
+		boolean wrong = false;
 		
 		for(int i = 0; i<stack.num_boxes; i++) { 
 			CommandBox temp = stack.box_stack[i];
@@ -138,66 +140,105 @@ public class Level2 extends Level {
 			if (temp == null) {
 				continue;
 			}
-			if (temp.str.equals(commandbox_1.str)) {
+			if (temp.str.equals(commandbox_1.str) && !dBlock && !cBlock) {
 				 at_fridge = true;
 				 fBlock = true;
 			}
-			else if (temp.str.equals(commandbox_2.str)) {
+			else if (temp.str.equals(commandbox_2.str) && !fBlock && !cBlock) {
 				at_drawer = true;
 				dBlock = true;
 			}
-			else if (temp.str.equals(commandbox_3.str)) {
+			else if (temp.str.equals(commandbox_3.str) && !fBlock && !dBlock) {
 				at_cabinet = true;
 				cBlock = true;
 			}
-			else if (temp.str.equals(commandbox_4.str)) {
+			else if (temp.str.equals(commandbox_4.str) && at_fridge) {
 				open_fridge = true;
 			}
-			else if (temp.str.equals(commandbox_5.str)) {
+			else if (temp.str.equals(commandbox_5.str) && at_cabinet) {
 				open_cabinet = true;
 			}
-			else if (temp.str.equals(commandbox_6.str)) {
+			else if (temp.str.equals(commandbox_6.str) && at_drawer) {
 				open_drawer = true;
 			}
-			else if (temp.str.equals(commandbox_7.str)) {
+			else if (temp.str.equals(commandbox_7.str) && open_fridge) {
 				close_fridge = true;
 				fBlock = false;
 			}
-			else if (temp.str.equals(commandbox_8.str)) {
+			else if (temp.str.equals(commandbox_8.str) && open_drawer) {
 				close_drawer = true;
 				dBlock = false;
 			}
-			else if (temp.str.equals(commandbox_9.str)) {
+			else if (temp.str.equals(commandbox_9.str) && open_cabinet) {
 				close_cabinet = true;
 				cBlock = false;
 			}
 			else if (temp.str.equals(commandbox_10.str)) {
 				bread = true;
+				
+				if (!fBlock){
+					food_place = false;
+				}
 			}
-			else if (temp.str.equals(commandbox_11.str)) {
+			else if (temp.str.equals(commandbox_11.str) && open_drawer) {
 				knife = true;
 			}
 			else if (temp.str.equals(commandbox_12.str) ||
 					temp.str.equals(commandbox_13.str) ||
 					temp.str.equals(commandbox_14.str)) {
-				wrong = true;
+				too_much = true;
 			}
 			else if (temp.str.equals(commandbox_15.str)){
 				pb = true;
+				
+				if (!fBlock){
+					food_place = false;
+				}
 			}
 			else if (temp.str.equals(commandbox_16.str)){
 				j = true;
+				
+				if (!fBlock){
+					food_place = false;
+				}
 			}
-			else if (temp.str.equals(commandbox_17.str)){
+			else if (temp.str.equals(commandbox_17.str) && open_cabinet){
 				plate = true;
 			}
-			
+			else{
+				wrong = true;
+			}
 		}
 		
-		if (wrong) {
-			model.cur_error = "Wrong!";
+		
+		if (!(at_fridge && at_drawer && at_cabinet)){
+			model.cur_error = "You're passing a crucial location!";
+			model.cur_prog = Model.Progress.ERROR;
+		}
+		else if (fBlock || cBlock || dBlock){
+			model.cur_error = "You can't be at 2 places at once!";
+			model.cur_prog = Model.Progress.ERROR;
+		}
+		else if (!(close_fridge && close_cabinet && close_drawer)){
+			model.cur_error = "You left something open!";
+			model.cur_prog = Model.Progress.ERROR;
+		}
+		else if (!(bread && knife && pb && j && plate)){
+			model.cur_error = "You forgot to get something!";
+			model.cur_prog = Model.Progress.ERROR;
+		}
+		else if (!food_place){
+			model.cur_error = "There's no food in the cabinet or drawer!";
+			model.cur_prog = Model.Progress.ERROR;
+		}
+		else if (too_much) {
+			model.cur_error = "You're carrying too many things!";
 			model.cur_prog = Model.Progress.ERROR;
 		} 
+		else if (wrong) {
+			model.cur_error = "Wrong";
+			model.cur_prog = Model.Progress.ERROR;
+		}
 		else {
 			model.cur_error = "Done!";
 			model.cur_prog = Model.Progress.SUCCESS;
