@@ -18,11 +18,11 @@ public class SandboxLevel extends Level {
 		CommandBox commandbox_9;
 		CommandBox commandbox_10;
 		CommandBox commandbox_11;
-    CommandBox commandbox_12;
-    CommandBox commandbox_13;
-    CommandBox commandbox_14;
-    CommandBox commandbox_15;
-    CommandBox commandbox_16;
+        CommandBox commandbox_12;
+        CommandBox commandbox_13;
+        CommandBox commandbox_14;
+        CommandBox commandbox_15;
+        CommandBox commandbox_16;
 		
 		
 		Model model;
@@ -36,9 +36,9 @@ public class SandboxLevel extends Level {
 		
 		Font font1;
 		TrueTypeFont font2;
-    ArrayList<CommandBox> boxes;
+        ArrayList<CommandBox> boxes;
 	
-    Stack stack = new Stack(600, 40, 10);
+        Stack stack = new Stack(600, 40, 10);
 
 		public SandboxLevel(Model m, GameContainer gc){
 			this.model = m;
@@ -60,7 +60,7 @@ public class SandboxLevel extends Level {
       commandbox_15 = new CommandBox(80, 80, "walk to living room");
       commandbox_15 = new CommandBox(80, 500, "invite friends over");
 			
-		  boxes = new ArrayList<CommandBox>();	
+      boxes = new ArrayList<CommandBox>();	
       System.out.println("added box");
 			boxes.add( commandbox_1);
 			boxes.add( commandbox_2);

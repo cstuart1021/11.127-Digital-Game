@@ -45,9 +45,9 @@ public class Controller{
 			model.modifyCBPos(cur_command_box, cur_command_box.cur_x + ( new_x - arg0),cur_command_box.cur_y + (new_y - arg1) );
 		}
 		
-    System.out.println("mouse dragged");
-    System.out.println("model.overrun"+model.over_run_1);
-    System.out.println(!overButton(model.run,new_x,new_y));
+    //System.out.println("mouse dragged");
+    //System.out.println("model.overrun"+model.over_run_1);
+    //System.out.println(!overButton(model.run,new_x,new_y));
 	  if ( ! overButton(model.run, new_x, new_y) && model.over_run_1 ){
 			model.run_button_color = model.run_color;
 			System.out.println("set back");
@@ -117,14 +117,15 @@ public class Controller{
 					model.run();
 					model.run_button_color = model.run_color;
 					System.out.println("set back1");
-          model.over_run_1 = false;
+                    model.over_run_1 = false;
 				}else if (overButton(model.next,x,y) && model.cur_prog == Model.Progress.SUCCESS) {
 					model.over_next_1 = false;
-					model.cur_prog = Model.Progress.WORK;
-          model.cur_level = model.cur_level.getNextLevel();
-          model.next_button_color = model.next_color;
+					//model.cur_prog = Model.Progress.WORK;
+					model.cur_prog=Model.Progress.SUCCESS;
+                    model.cur_level = model.cur_level.getNextLevel();
+                   model.next_button_color = model.next_color;
 
-        }else if (overButton(model.back,x,y)){
+                }else if (overButton(model.back,x,y)){
         	model.over_back_1 = false;
         	model.cur_prog = Model.Progress.WORK;
         	model.cur_level = model.cur_level.getPrevLevel();
