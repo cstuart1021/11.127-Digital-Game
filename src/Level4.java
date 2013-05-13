@@ -108,60 +108,95 @@ public class Level4 extends Level {
 				boolean start_recursive = false;
 				boolean pick_up_top = false;
 				boolean get_plate = false;
-				boolean trash = false;
-				boolean wrong = false;
 				boolean base_block = false;
 				boolean recurse_block = false;
+				
+				String message = "";
 				
 				for (int i = 0 ; i< stack.num_boxes; i++) {
 					CommandBox temp = stack.box_stack[i];
 					
 					if (temp == null ){
 						continue;
-					} else if (temp.str.equals(commandbox_1.str) && on_plate && 
-							!(base_block)){
+					} else if (temp.str.equals(commandbox_1.str)){
+						if (!start_recursive){
+							message = "Complete the cases!";
+							break;
+						}
 						end_recursive = true;
 						recurse_block = false;
-					}else if (temp.str.equals(commandbox_3.str) && start_base ){
+					}else if (temp.str.equals(commandbox_2.str)){
+						message = "You're robot is holding too many things!";
+						break;
+					}else if (temp.str.equals(commandbox_3.str)){
+						if (!start_base){
+							message = "Look at hint!";
+							break;
+						}
 						no_sandwiches = true;
-					} else if (temp.str.equals(commandbox_4.str) && !(recurse_block)){
+					} else if (temp.str.equals(commandbox_4.str)){
+						if (recurse_block){
+							message = "Complete Cases";
+							break;
+						}
 						start_base = true;
 						base_block = true;
-					} else if (temp.str.equals(commandbox_5.str) && pick_up_top && get_plate){
+					} else if (temp.str.equals(commandbox_5.str)){
+						if (!pick_up_top){
+							message = "You're not holding a sandwich!";
+							break;
+						}else if (!get_plate){
+							message = "You don't have a plate!";
+							break;
+						}
 						on_plate = true;
-					} else if (temp.str.equals(commandbox_6.str) && no_sandwiches && !(recurse_block)){
+					} else if (temp.str.equals(commandbox_6.str)){
+						if (recurse_block){
+							message = "Complete the cases!";
+							break;
+						}
 						end_base = true;
 						base_block = false;
-					} else if (temp.str.equals(commandbox_7.str) && !(base_block)) {
+					} else if (temp.str.equals(commandbox_7.str)) {
+						if (base_block){
+							message = "Complete the cases!";
+							break;
+						}
 						start_recursive = true;
 						recurse_block = true;
-					} else if (temp.str.equals(commandbox_8.str) && start_recursive){
+					} else if (temp.str.equals(commandbox_8.str)){
+						if (!start_recursive){
+							message = "Look at hint!";
+							break;
+						}
 						pick_up_top = true;
-					} else if (temp.str.equals(commandbox_10.str)){
-						trash = true;
-					} else if (temp.str.equals(commandbox_11.str) && start_recursive) {
+					} else if (temp.str.equals(commandbox_9.str)){
+						message = "Look at hint!";
+						break;
+					}else if (temp.str.equals(commandbox_10.str)){
+						message = "You're getting rid of your sandwiches!";
+						break;
+					} else if (temp.str.equals(commandbox_11.str)) {
+						if (!start_recursive){
+							message = "Look at hint!";
+							break;
+						}
 						get_plate = true;
-					}  else {
-						wrong = true;
 					}
 					
 				}
 				
-				wrong = wrong || !(end_recursive && no_sandwiches && start_base && on_plate 
-						&& end_base && start_recursive && pick_up_top && get_plate);
+				//wrong = wrong || !(end_recursive && no_sandwiches && start_base && on_plate 
+						//&& end_base && start_recursive && pick_up_top && get_plate);
 			
-				if (!(start_base && end_base && start_recursive && end_recursive)){
-					model.cur_error = "Complete the cases";
+				if (!(message.equals(""))){
+					model.cur_error = message;
 					model.cur_prog = Model.Progress.ERROR;
-				}
-				else if (trash){
-					model.cur_error = "Oh no! You are losing sandwiches";
-				}
-				else if (wrong) {
-					model.cur_error = "Wrong!";
+				}else if(!(end_recursive && no_sandwiches && start_base && on_plate && end_base && start_recursive 
+						&& pick_up_top && get_plate)){
+					model.cur_error = "You are missing crucial blocks!";
 					model.cur_prog = Model.Progress.ERROR;
-				} 
-				else {
+				}else{
 					model.cur_error = "Done!";
 					model.cur_prog = Model.Progress.SUCCESS;
 				}
