@@ -229,6 +229,7 @@ public class Level2 extends Level {
 					temp.str.equals(commandbox_13.str) ||
 					temp.str.equals(commandbox_14.str)) {
 				message = "You're carrying too many things!";
+				break;
 			}
 			else if (temp.str.equals(commandbox_15.str)){
 				if (!fBlock){
