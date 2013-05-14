@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.*;
+
 import java.awt.Font;
 import org.newdawn.slick.font.*;
 
@@ -65,8 +66,15 @@ public class Level3 extends Level{
 	boolean incomplete_sandwich_error = false;
 	boolean efficiency_error = false;
 	boolean no_end_error = false;
+	Image confused_robot;
+	Image no_sandwich;
+	Image sandwich_on_plate;
+	Image pb_loves_j;
+	Image bread_needed;
+	Image pbj_tools;
+	Image not_enough;
 
-	public Level3(Model m, GameContainer gc){
+	public Level3(Model m, GameContainer gc) throws SlickException{
 		this.model = m;
 
 		commandbox_1 = new CommandBox(40, 200, "get bread");
@@ -126,6 +134,27 @@ public class Level3 extends Level{
 		tf_list.add(tf5);
 		tf_list.add(tf6);
 		tf_list.add(tf7);
+		
+		confused_robot = new BigImage("images/confused-robot.jpg",Image.FILTER_NEAREST,512);
+		confused_robot = confused_robot.getSubImage(0,0,300,450);
+		
+		no_sandwich = new BigImage("images/no-sandwich.jpg",Image.FILTER_NEAREST,512);
+		no_sandwich = no_sandwich.getSubImage(0,0,400,450);
+		
+		sandwich_on_plate = new BigImage("images/sandwich-on-plate.jpg", Image.FILTER_NEAREST, 512);
+		sandwich_on_plate = sandwich_on_plate.getSubImage(0,0,510,400);
+		
+		pb_loves_j = new BigImage("images/pb-loves-j.png",Image.FILTER_LINEAR);
+		pb_loves_j = pb_loves_j.getSubImage(0, 0, 600, 400);
+		
+		bread_needed = new BigImage("images/bread-needed.jpg",Image.FILTER_LINEAR);
+		bread_needed = bread_needed.getSubImage(0, 0, 400, 600);
+		
+		pbj_tools = new BigImage("images/pbj-tools.jpg",Image.FILTER_LINEAR);
+		pbj_tools = pbj_tools.getSubImage(0, 0, 500, 300);
+		
+		not_enough = new BigImage("images/not-enough.jpg",Image.FILTER_LINEAR);
+		not_enough = not_enough.getSubImage(0,0,500,400);
 
 	}
 
@@ -189,30 +218,44 @@ public class Level3 extends Level{
 			materials_error = true;
 		if(materials_error){
 			model.cur_error = "Looks like you don't have everything you need.";
+			model.show_image = true;
+			model.cur_image = pbj_tools;
 			model.cur_prog = Model.Progress.ERROR;
 		}else if(efficiency_error){
 			model.cur_error = "You don't need to get the same materials again!";
 			model.cur_prog = Model.Progress.ERROR;
 		}else if(bread_error){
 			model.cur_error = "Need bread out to spread the pb&j.";
+			model.show_image = true;
+			model.cur_image = bread_needed;
 			model.cur_prog = Model.Progress.ERROR;
 		}else if(incomplete_sandwich_error){
 			model.cur_error = "Your sandwiches are incomplete.";
+			model.show_image = true;
+			model.cur_image = pb_loves_j;
 			model.cur_prog = Model.Progress.ERROR;
 		}else if(no_end_error){
-			model.cur_error = "Your robot cannot make an infinite number of sandwiches!";
+			model.cur_error = "Your robot doesn't know how to stop making sandwiches!";
+			model.show_image = true;
+			model.cur_image = confused_robot;
 			model.cur_prog = Model.Progress.ERROR;
 		}else if(sandwich){
 			model.cur_error = "Your sandwiches should be on a plate.";
+			model.show_image = true;
+			model.cur_image = sandwich_on_plate;
 			model.cur_prog = Model.Progress.ERROR;
 		}else if(sandwich_count == 0){
 			model.cur_error = "You haven't made any sandwiches.";
+			model.show_image = true;
+			model.cur_image = no_sandwich;
 			model.cur_prog = Model.Progress.ERROR;
 		}else if (sandwich_count == 20) {
 			model.cur_error = "Done!";
 			model.cur_prog = Model.Progress.SUCCESS;
 		}else if(sandwich_count > 0){
-			model.cur_error = "You don't have the right number of sandwiches.";
+			model.cur_error = "You don't have the right number of sandwiches on the plate.";
+			model.show_image = true;
+			model.cur_image = not_enough;
 			model.cur_prog = Model.Progress.ERROR;
 		}else{
 			model.cur_error = "Looks like something went wrong.";
