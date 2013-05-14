@@ -44,14 +44,14 @@ public class Level1 extends Level{
 			
 			commandbox_1 = new CommandBox(40, 200, "clean counter");
 			commandbox_2 = new CommandBox(40, 260, "clean red plate");
-			commandbox_3 = new CommandBox(180, 200, "clean black plate");
-			commandbox_4 = new CommandBox(180, 260, "clean fork");
+			commandbox_3 = new CommandBox(210, 200, "clean black plate");
+			commandbox_4 = new CommandBox(210, 260, "clean fork");
 			commandbox_5 = new CommandBox(40, 320, "clean knife");
 			commandbox_6 = new CommandBox(40, 380, "clean refrigerator");
 			commandbox_7 = new CommandBox(40, 440, "walk to living room");
-			commandbox_8 = new CommandBox(180, 320, "turn on TV");
-			commandbox_9 = new CommandBox(180, 380, "plug sink");
-			commandbox_10 = new CommandBox(180, 440, "run hot water");
+			commandbox_8 = new CommandBox(210, 320, "turn on TV");
+			commandbox_9 = new CommandBox(210, 380, "plug sink");
+			commandbox_10 = new CommandBox(210, 440, "run hot water");
 			commandbox_11 = new CommandBox(40, 500, "add soap to water");
 			
 		  boxes = new ArrayList<CommandBox>();	

@@ -60,16 +60,16 @@ public class Level3 extends Level{
 
 		commandbox_1 = new CommandBox(40, 200, "get bread");
 		commandbox_2 = new CommandBox(40, 260, "get peanut butter");
-		commandbox_3 = new CommandBox(180, 200, "get jelly");
-		commandbox_4 = new CommandBox(180, 260, "get knife");
+		commandbox_3 = new CommandBox(210, 200, "get jelly");
+		commandbox_4 = new CommandBox(210, 260, "get knife");
 		commandbox_5 = new CommandBox(40, 320, "get large plate");
-		commandbox_6 = new CommandBox(40, 380, "place two slices of bread on counter");
+		commandbox_6 = new CommandBox(40, 380, "place slices of bread on counter");
 		commandbox_7 = new CommandBox(40, 440, "spread peanut butter on bread");
-		commandbox_8 = new CommandBox(180, 320, "spread jelly on bread");
-		commandbox_9 = new CommandBox(180, 380, "put bread slices together ");
-		commandbox_10 = new CommandBox(180, 440, "put sandwich on large plate");
+		commandbox_8 = new CommandBox(210, 320, "spread jelly on bread");
+		commandbox_9 = new CommandBox(210, 380, "put bread slices together ");
+		commandbox_10 = new CommandBox(210, 440, "put sandwich on large plate");
 		commandbox_11 = new CommandBox(40, 500, "repeat 20 times");
-		commandbox_12 = new CommandBox(180, 500, "end repeat");
+		commandbox_12 = new CommandBox(210, 500, "end repeat");
 
 
 		boxes = new ArrayList<CommandBox>();	
@@ -132,9 +132,13 @@ public class Level3 extends Level{
 				for(int j=0; j<20; j++){
 					do{
 						temp = stack.box_stack[index];
+						if (temp == null) {
+							index++;
+							continue;
+						}
 						checkConditions(temp);
 						index++;
-					} while(!temp.str.equals(commandbox_12.str));
+					} while(temp != null && !temp.str.equals(commandbox_12.str));
 					if(temp.str.equals(commandbox_12.str)){
 						end = index;
 						index = i+1; //reseting index to beginning of repeat

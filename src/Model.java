@@ -18,8 +18,9 @@ public class Model {
 	//Levels
 	Level1 level1;
 	SandboxLevel sandbox_level;
-	Level2Materials level2;
+	Level2 level2;
 	Level3 level3;
+	Level4 level4;
 
 	//current level
 
@@ -62,8 +63,9 @@ public class Model {
 		start_screen = new StartScreen();
 		level1 = new Level1(this, gc);
 		sandbox_level = new SandboxLevel(this, gc);
-		level2 = new Level2Materials(this);
+		level2 = new Level2(this, gc);
 		level3 = new Level3(this,gc);
+		level4 = new Level4(this, gc);
 		cur_level = start_screen;
 		start_screen.setNextLevel(level1);
 		level1.setPrevLevel(start_screen);
@@ -71,8 +73,10 @@ public class Model {
 		level2.setPrevLevel(level1);
 		level2.setNextLevel(level3);
 		level3.setPrevLevel(level2);
-		level3.setNextLevel(sandbox_level);
-		sandbox_level.setPrevLevel(level3);
+		level3.setNextLevel(level4);
+		level4.setPrevLevel(level3);
+		level4.setNextLevel(sandbox_level);
+		sandbox_level.setPrevLevel(level4);
 
 		run = new Rectangle( 400,400, 100, 100);
 		run_button_color = new Color(0 , 204, 102);

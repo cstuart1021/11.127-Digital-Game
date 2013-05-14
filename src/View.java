@@ -12,12 +12,16 @@ public class View {
 	Model model;
 	Font times;
 	TrueTypeFont times2;
+	TrueTypeFont times_small;
+	Font times_small_1;
 
 	public View(Model model) {
 
 		this.model = model;
 		times = new Font("Times New Roman",Font.BOLD, 15);
+		times_small_1 =  new Font("Times New Roman", Font.PLAIN, 14);
 		times2 = new TrueTypeFont(times, false);
+		times_small = new TrueTypeFont(times_small_1, false);
 
 	}
 	// albhalbab
@@ -42,7 +46,8 @@ public class View {
 				g.setColor(temp_box.rect_color);
 				temp_box.render();
 				g.setColor(temp_box.text_color);
-				g.drawString(temp_box.str, temp_box.cur_x, temp_box.cur_y);
+				g.setFont(times_small);
+				g.drawString(temp_box.str, temp_box.cur_x, temp_box.cur_y+3);
 			}
 			// draw run button
 			g.setColor(model.run_button_color);
