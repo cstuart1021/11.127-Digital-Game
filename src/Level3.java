@@ -57,14 +57,14 @@ public class Level3 extends Level{
 	boolean sandwich = false;
 	int sandwich_count = 0;
 	
-	boolean materials_error;
+	boolean materials_error = false;;
 	//String error1;
 	//String error2;
 	//String error3;
-	boolean bread_error;
-	boolean incomplete_sandwich_error;
-	boolean efficiency_error;
-	boolean no_end_error;
+	boolean bread_error = false;
+	boolean incomplete_sandwich_error = false;
+	boolean efficiency_error = false;
+	boolean no_end_error = false;
 
 	public Level3(Model m, GameContainer gc){
 		this.model = m;
@@ -146,7 +146,7 @@ public class Level3 extends Level{
 		jelly = false;
 		sandwich = false;
 		for (int i = 0 ; i< stack.num_boxes; i++) {
-			if(materials_error || bread_error || incomplete_sandwich_error || no_end_error)
+			if(materials_error || bread_error || incomplete_sandwich_error || no_end_error || efficiency_error)
 				break;
 			CommandBox temp = stack.box_stack[i];
 			if(temp == null){
@@ -157,25 +157,29 @@ public class Level3 extends Level{
 				int index = i; //index of repeat20 block
 				int end = 0;
 				//boolean test = true;
-				for(int j=0; j<20; j++){
-					if(materials_error || bread_error || incomplete_sandwich_error || no_end_error)
+				for(int j=0; j<20; j++){ //repeat code in repeat20 block
+					if(materials_error || bread_error || incomplete_sandwich_error || no_end_error || efficiency_error)
 						break;
-					do{
-						if(materials_error || bread_error || incomplete_sandwich_error || no_end_error)
+					do{//code in repeat20 block
+						if(materials_error || bread_error || incomplete_sandwich_error || no_end_error || efficiency_error)
 							break;
 						index++;
+						if(index >= stack.num_boxes){
+							no_end_error = true;
+							break;
+						}
 						temp = stack.box_stack[index];
 						if (temp == null) {
 							continue;
 						}
 						checkConditions(temp);
-					} while((temp == null || !temp.str.equals(commandbox_12.str)) && (index < stack.box_stack.length));
+					} while((temp == null || !temp.str.equals(commandbox_12.str)));
 					if(index >= stack.box_stack.length){
 						no_end_error = true;
 						break;
 					}else if(temp != null && temp.str.equals(commandbox_12.str)){
 						end = index;
-						index = i+1; //reseting index to beginning of repeat
+						index = i; //reseting index to beginning of repeat
 					}
 				}
 				i=end;;
@@ -183,14 +187,11 @@ public class Level3 extends Level{
 		}
 		if(!(has_bread && has_knife && has_plate && has_pb && has_jelly))
 			materials_error = true;
-		if (sandwich_count == 20) {
-			model.cur_error = "Done!";
-			model.cur_prog = Model.Progress.SUCCESS;
-		}else if(sandwich_count > 0){
-			model.cur_error = "You don't have the right number of sandwiches.";
-			model.cur_prog = Model.Progress.ERROR;
-		}else if(materials_error){
+		if(materials_error){
 			model.cur_error = "Looks like you don't have everything you need.";
+			model.cur_prog = Model.Progress.ERROR;
+		}else if(efficiency_error){
+			model.cur_error = "You don't need to get the same materials again!";
 			model.cur_prog = Model.Progress.ERROR;
 		}else if(bread_error){
 			model.cur_error = "Need bread out to spread the pb&j.";
@@ -198,17 +199,20 @@ public class Level3 extends Level{
 		}else if(incomplete_sandwich_error){
 			model.cur_error = "Your sandwiches are incomplete.";
 			model.cur_prog = Model.Progress.ERROR;
+		}else if(no_end_error){
+			model.cur_error = "Your robot cannot make an infinite number of sandwiches!";
+			model.cur_prog = Model.Progress.ERROR;
 		}else if(sandwich){
 			model.cur_error = "Your sandwiches should be on a plate.";
-			model.cur_prog = Model.Progress.ERROR;
-		}else if(efficiency_error){
-			model.cur_error = "You don't need to get the same materials again!";
 			model.cur_prog = Model.Progress.ERROR;
 		}else if(sandwich_count == 0){
 			model.cur_error = "You haven't made any sandwiches.";
 			model.cur_prog = Model.Progress.ERROR;
-		}else if(no_end_error){
-			model.cur_error = "Your robot cannot make an infinite number of sandwiches!";
+		}else if (sandwich_count == 20) {
+			model.cur_error = "Done!";
+			model.cur_prog = Model.Progress.SUCCESS;
+		}else if(sandwich_count > 0){
+			model.cur_error = "You don't have the right number of sandwiches.";
 			model.cur_prog = Model.Progress.ERROR;
 		}else{
 			model.cur_error = "Looks like something went wrong.";
