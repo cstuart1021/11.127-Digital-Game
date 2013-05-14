@@ -38,8 +38,10 @@ public class Level1 extends Level{
     
 
 	  Stack stack = new Stack(600, 40, 10);
+	  Image error_image_1;
+	  
 		
-		public Level1(Model m, GameContainer gc){
+		public Level1(Model m, GameContainer gc) throws SlickException{
 			this.model = m;
 			
 			commandbox_1 = new CommandBox(40, 200, "clean counter");
@@ -92,6 +94,9 @@ public class Level1 extends Level{
 			tf_list.add(tf4);
 			tf_list.add(tf5);
 			
+			
+			error_image_1 = new BigImage("images/no_water.jpg",Image.FILTER_NEAREST,512);
+			error_image_1 = error_image_1.getSubImage(0,0,400,400);
 		}
 		
 		public void run(){
@@ -141,6 +146,8 @@ public class Level1 extends Level{
 			}
 			else if (! ran_water) {
 				model.cur_error = "no water!";
+				model.show_image = true;
+				model.cur_image = error_image_1;
 				model.cur_prog = Model.Progress.ERROR;
 			}
 			else if (! added_soap) {

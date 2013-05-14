@@ -74,6 +74,9 @@ public class View {
 			if (model.cur_prog == Model.Progress.ERROR){
 				g.setColor(Color.red);
 				g.drawString(model.cur_error, 140, model.cur_level.getTF().size()*20+40);
+				if (model.show_image){
+					model.cur_image.draw(300,300);
+				}
 			} else if (model.cur_prog == Model.Progress.SUCCESS) {
 				g.setColor(Color.green);
 				g.drawString(model.cur_error, 100, 140);

@@ -31,6 +31,9 @@ public class Controller{
   		model.cur_error = "Done!";
   		model.cur_prog = Model.Progress.SUCCESS;
     }
+    if (model.show_image){
+    	model.show_image = false;
+    }
 		
 		
 		// check for run
@@ -91,6 +94,9 @@ public class Controller{
         model.back_button_color =  model.next_button_color.darker();
       }
   	}
+		if (model.show_image){
+			model.show_image = false;
+		}
 		
 
 		
