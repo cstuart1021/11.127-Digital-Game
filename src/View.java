@@ -74,24 +74,13 @@ public class View {
 			if (model.cur_prog == Model.Progress.ERROR){
 				g.setColor(Color.red);
 				g.drawString(model.cur_error, 140, model.cur_level.getTF().size()*20+40);
+				if (model.show_image){
+					model.cur_image.draw(300,300);
+				}
 			} else if (model.cur_prog == Model.Progress.SUCCESS) {
 				g.setColor(Color.green);
-				g.drawString(model.cur_error, 140, model.cur_level.getTF().size()*20+40);
-			}
-			// draw paragraph
-
-
-			//		  // draw error message	
-			//			if (model.cur_prog == Model.Progress.ERROR){
-			//				g.setColor(Color.red);
-			//			
-			//			} else if (model.cur_prog == Model.Progress.SUCCESS) {
-			//				g.setColor(Color.green);
-			//
-			//			}
-			//			if (model.cur_prog != Model.Progress.WORK){
-			//				g.drawString(model.cur_error, 350, model.cur_level.getTF().size()*20+40);
-			//			}
+				g.drawString(model.cur_error, 100, 140);
+			} 
 
 			// draw paragraph
 			ArrayList<TextField> tf_list = model.cur_level.getTF();

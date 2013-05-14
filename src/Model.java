@@ -1,7 +1,7 @@
 import java.util.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.*;
-
+import org.newdawn.slick.Image;
 
 
 public class Model {
@@ -9,6 +9,8 @@ public class Model {
 	Screen cur_screen;
 	Progress cur_prog;
 	String cur_error;
+	Image cur_image;
+	boolean show_image;
 
 
 	StartScreen start_screen;
@@ -58,7 +60,7 @@ public class Model {
 
 
 	public Model(GameContainer gc) {
-
+		try {
 		cur_screen = Screen.START;
 		start_screen = new StartScreen();
 		level1 = new Level1(this, gc);
@@ -93,6 +95,10 @@ public class Model {
 		error_3 = " stay on task!";
 		next = new Rectangle( 500,500,100,50);
 		back = new Rectangle(10, 700, 50, 50);
+		
+		} catch (SlickException e){
+			
+		}
 	}
 	public void modifyStack() {
 
