@@ -40,7 +40,6 @@ public class Level3 extends Level{
 	Level next_level;
 
 
-
 	Stack stack = new Stack(600, 40, 20);
 	
 	
@@ -66,6 +65,7 @@ public class Level3 extends Level{
 	boolean incomplete_sandwich_error = false;
 	boolean efficiency_error = false;
 	boolean no_end_error = false;
+
 	Image confused_robot;
 	Image no_sandwich;
 	Image sandwich_on_plate;
@@ -74,6 +74,8 @@ public class Level3 extends Level{
 	Image pbj_tools;
 	Image not_enough;
 	Image efficiency;
+	Image star;
+
 
 	public Level3(Model m, GameContainer gc) throws SlickException{
 		this.model = m;
@@ -136,6 +138,7 @@ public class Level3 extends Level{
 		tf_list.add(tf6);
 		tf_list.add(tf7);
 		
+
 		confused_robot = new BigImage("images/confused-robot.jpg",Image.FILTER_NEAREST);
 		confused_robot = confused_robot.getSubImage(0,0,300,450);
 		
@@ -159,6 +162,10 @@ public class Level3 extends Level{
 		
 		efficiency = new BigImage("images/efficiency.jpg",Image.FILTER_NEAREST);
 		efficiency = efficiency.getSubImage(0,0,650,400);
+
+		star = new BigImage("images/star.jpg", Image.FILTER_NEAREST, 1024);
+		star = star.getSubImage(0, 0, 499, 508);
+
 
 	}
 
@@ -258,6 +265,8 @@ public class Level3 extends Level{
 		}else if (sandwich_count == 20) {
 			model.cur_error = "Done!";
 			model.cur_prog = Model.Progress.SUCCESS;
+			model.cur_image = star;
+			model.show_image = true;
 		}else if(sandwich_count > 0){
 			model.cur_error = "You don't have the right number of sandwiches on the plate.";
 			model.show_image = true;
@@ -266,6 +275,7 @@ public class Level3 extends Level{
 		}else{
 			model.cur_error = "Looks like something went wrong.";
 			model.cur_prog = Model.Progress.ERROR;
+			
 		}
 	}
 

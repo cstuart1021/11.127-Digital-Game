@@ -55,7 +55,7 @@ public class View {
 			g.setColor(Color.black);
 			g.drawString("RUN", model.run.getCenterX()-15, model.run.getCenterY() - 5);
 			// draw next
-			if (model.cur_prog == Model.Progress.SUCCESS) {
+			if (model.cur_prog == Model.Progress.SUCCESS && model.cur_level != model.sandbox_level) {
 				g.setColor(model.next_button_color);
 				ShapeRenderer.fill(model.next);
 				g.setColor(Color.black);
@@ -80,6 +80,9 @@ public class View {
 			} else if (model.cur_prog == Model.Progress.SUCCESS) {
 				g.setColor(Color.green);
 				g.drawString(model.cur_error, 100, 140);
+				if (model.show_image){
+					model.cur_image.draw(300,300);
+				}
 			} 
 
 			// draw paragraph
