@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.*;
+
 import java.awt.Font;
 
 public class Level2 extends Level {
@@ -45,6 +46,7 @@ public class Level2 extends Level {
 	Stack stack = new Stack(600, 40, 24);
 	
 	Image error_closed;
+	Image star;
 	
 	public Level2(Model m, GameContainer gc) throws SlickException {
 		this.model = m;
@@ -111,6 +113,9 @@ public class Level2 extends Level {
 		
 		error_closed = new BigImage("images/closed.png",Image.FILTER_NEAREST,512);
 		error_closed = error_closed.getSubImage(0,0,500,500);
+		
+		star = new BigImage("images/star.jpg", Image.FILTER_NEAREST, 1024);
+		star = star.getSubImage(0, 0, 499,508);
 		
 	}
 	
@@ -298,6 +303,8 @@ public class Level2 extends Level {
 		else {
 			model.cur_error = "Done!";
 			model.cur_prog = Model.Progress.SUCCESS;
+			model.cur_image = star;
+			model.show_image = true;
 		}
 		
 

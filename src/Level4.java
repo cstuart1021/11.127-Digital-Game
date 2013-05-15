@@ -1,7 +1,10 @@
 import java.awt.Font;
 import java.util.ArrayList;
 
+import org.newdawn.slick.BigImage;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.gui.TextField;
 
@@ -42,8 +45,10 @@ public class Level4 extends Level {
 	    
 
 		  Stack stack = new Stack(600, 40, 10);
+		  
+		  Image star;
 			
-			public Level4(Model m, GameContainer gc){
+			public Level4(Model m, GameContainer gc) throws SlickException{
 				this.model = m;
 				
 				commandbox_1 = new CommandBox(40, 200, "end resursive case");
@@ -96,6 +101,9 @@ public class Level4 extends Level {
 				tf_list.add(tf5);
 				tf_list.add(tf6);
 				tf_list.add(tf7);
+				
+				star = new BigImage("images/star.jpg", Image.FILTER_NEAREST, 1024);
+				star = star.getSubImage(0, 0, 499,508);
 				
 			}
 			
@@ -199,6 +207,8 @@ public class Level4 extends Level {
 				}else{
 					model.cur_error = "Done!";
 					model.cur_prog = Model.Progress.SUCCESS;
+					model.cur_image = star;
+					model.show_image = true;
 				}
 				
 			}
