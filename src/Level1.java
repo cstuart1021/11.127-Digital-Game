@@ -43,6 +43,7 @@ public class Level1 extends Level{
 	  Image error_no_soap;
 	  Image error_task;
 	  Image error_dishes;
+	  Image star;
 		
 		public Level1(Model m, GameContainer gc) throws SlickException{
 			this.model = m;
@@ -112,6 +113,9 @@ public class Level1 extends Level{
 			
 			error_dishes = new BigImage("images/Dirty-dishes.jpg", Image.FILTER_NEAREST, 512);
 			error_dishes = error_dishes.getSubImage(0,0,495,345);
+			
+			star = new BigImage("images/star.jpg", Image.FILTER_NEAREST, 1024);
+			star = star.getSubImage(0, 0, 499,508);
 			
 			
 		}
@@ -189,6 +193,8 @@ public class Level1 extends Level{
 			} else {
 				model.cur_error = "Done!";
 				model.cur_prog = Model.Progress.SUCCESS;
+				model.cur_image = star;
+				model.show_image = true;
 			}
 			
 		}

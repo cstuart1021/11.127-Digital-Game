@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.*;
+
 import java.awt.Font;
 import org.newdawn.slick.font.*;
 
@@ -38,6 +39,7 @@ public class Level3 extends Level{
 	Level prev_level;
 	Level next_level;
 
+	Image star;
 
 
 	Stack stack = new Stack(600, 40, 20);
@@ -66,7 +68,7 @@ public class Level3 extends Level{
 	boolean efficiency_error = false;
 	boolean no_end_error = false;
 
-	public Level3(Model m, GameContainer gc){
+	public Level3(Model m, GameContainer gc) throws SlickException{
 		this.model = m;
 
 		commandbox_1 = new CommandBox(40, 200, "get bread");
@@ -126,6 +128,9 @@ public class Level3 extends Level{
 		tf_list.add(tf5);
 		tf_list.add(tf6);
 		tf_list.add(tf7);
+		
+		star = new BigImage("images/star.jpg", Image.FILTER_NEAREST, 1024);
+		star = star.getSubImage(0, 0, 499, 508);
 
 	}
 
@@ -211,12 +216,15 @@ public class Level3 extends Level{
 		}else if (sandwich_count == 20) {
 			model.cur_error = "Done!";
 			model.cur_prog = Model.Progress.SUCCESS;
+			model.cur_image = star;
+			model.show_image = true;
 		}else if(sandwich_count > 0){
 			model.cur_error = "You don't have the right number of sandwiches.";
 			model.cur_prog = Model.Progress.ERROR;
 		}else{
 			model.cur_error = "Looks like something went wrong.";
 			model.cur_prog = Model.Progress.ERROR;
+			
 		}
 	}
 

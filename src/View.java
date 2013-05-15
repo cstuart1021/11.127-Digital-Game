@@ -80,6 +80,9 @@ public class View {
 			} else if (model.cur_prog == Model.Progress.SUCCESS) {
 				g.setColor(Color.green);
 				g.drawString(model.cur_error, 100, 140);
+				if (model.show_image){
+					model.cur_image.draw(300,300);
+				}
 			} 
 
 			// draw paragraph
