@@ -1,10 +1,7 @@
-import java.awt.Font;
 import java.util.ArrayList;
-
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.gui.TextField;
-
+import org.newdawn.slick.*;
+import java.awt.Font;
 
 public class Level2 extends Level {
 
@@ -47,7 +44,9 @@ public class Level2 extends Level {
 	
 	Stack stack = new Stack(600, 40, 24);
 	
-	public Level2(Model m, GameContainer gc) {
+	Image error_closed;
+	
+	public Level2(Model m, GameContainer gc) throws SlickException {
 		this.model = m;
 		
 		commandbox_1 = new CommandBox(40, 180, "If in front of fridge");
@@ -109,6 +108,9 @@ public class Level2 extends Level {
 		tf_list.add(tf3);
 		tf_list.add(tf4);
 		tf_list.add(tf5);
+		
+		error_closed = new BigImage("images/closed.png",Image.FILTER_NEAREST,512);
+		error_closed = error_closed.getSubImage(0,0,500,500);
 		
 	}
 	
@@ -187,6 +189,8 @@ public class Level2 extends Level {
 			else if (temp.str.equals(commandbox_7.str)) {
 				if (!open_fridge){
 					message = "The fridge is not open!";
+					model.show_image = true;
+					model.cur_image = error_closed;
 					break;
 				}
 				close_fridge = true;
@@ -195,6 +199,8 @@ public class Level2 extends Level {
 			else if (temp.str.equals(commandbox_8.str)) {
 				if (!open_drawer){
 					message = "The drawer is not open!";
+					model.show_image = true;
+					model.cur_image = error_closed;
 					break;
 				}
 				close_drawer = true;
@@ -203,6 +209,8 @@ public class Level2 extends Level {
 			else if (temp.str.equals(commandbox_9.str)) {
 				if (!open_cabinet){
 					message = "The cabinet is not open!";
+					model.show_image = true;
+					model.cur_image = error_closed;
 					break;
 				}
 				close_cabinet = true;
@@ -214,6 +222,8 @@ public class Level2 extends Level {
 					break;
 				}else if(!open_fridge){
 					message = "The fridge is not open!";
+					model.show_image = true;
+					model.cur_image = error_closed;
 					break;
 				}
 				bread = true;
@@ -221,6 +231,8 @@ public class Level2 extends Level {
 			else if (temp.str.equals(commandbox_11.str)) {
 				if (!open_drawer){
 					message = "The drawer is not open!";
+					model.show_image = true;
+					model.cur_image = error_closed;
 					break;
 				}
 				knife = true;
@@ -237,6 +249,8 @@ public class Level2 extends Level {
 					break;
 				}else if(!open_fridge){
 					message = "The fridge is not open!";
+					model.show_image = true;
+					model.cur_image = error_closed;
 					break;
 				}
 				pb = true;
@@ -247,6 +261,8 @@ public class Level2 extends Level {
 					break;
 				}else if(!open_fridge){
 					message = "The fridge is not open!";
+					model.show_image = true;
+					model.cur_image = error_closed;
 					break;
 				}
 				j = true;
@@ -254,6 +270,8 @@ public class Level2 extends Level {
 			else if (temp.str.equals(commandbox_17.str)){
 				if (!open_cabinet){
 					message = "The cabinet is not open!";
+					model.show_image = true;
+					model.cur_image = error_closed;
 					break;
 				}
 				plate = true;
