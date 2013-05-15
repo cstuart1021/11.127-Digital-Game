@@ -95,7 +95,7 @@ public class SandboxLevel extends Level {
 			botfire = new BigImage("images/botfire.jpg", Image.FILTER_NEAREST, 512);
 			botfire = botfire.getSubImage(0,0,600,300);
 			
-			man_down = new BigImage("images/man_down.jpg", Image.FILTER_NEAREST, 512);
+			man_down = new BigImage("images/man_down.png", Image.FILTER_NEAREST, 512);
 			man_down = man_down.getSubImage(0,0,279,298);
 			
 	
@@ -219,8 +219,11 @@ public class SandboxLevel extends Level {
 				}
 				
 			}
-			
-			model.cur_error = "Do something crazy!";
+			if (fell) {
+				model.cur_error = "you fell down!";
+			}else {
+				model.cur_error = "Do something crazy!";
+			}
 			model.cur_prog = Model.Progress.ERROR;
 
 			
