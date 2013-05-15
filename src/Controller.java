@@ -86,7 +86,7 @@ public class Controller{
 				model.over_run_1 = true;
 				model.run_button_color = model.run_button_color.darker();
 				System.out.println("set to red");
-			}else if (overButton(model.next, x, y) && model.over_next_1 == false) {
+			}else if (overButton(model.next, x, y) && model.over_next_1 == false && model.cur_level != model.sandbox_level) {
         model.over_next_1 = true;
         model.next_button_color = model.next_button_color.darker();
       } else if (overButton(model.back, x, y) && model.over_back_1 == false) {
@@ -124,7 +124,7 @@ public class Controller{
 					model.run_button_color = model.run_color;
 					System.out.println("set back1");
                     model.over_run_1 = false;
-				}else if (overButton(model.next,x,y) && model.cur_prog == Model.Progress.SUCCESS) {
+				}else if (overButton(model.next,x,y) && model.cur_prog == Model.Progress.SUCCESS && model.cur_level != model.sandbox_level) {
 					model.over_next_1 = false;
 
 					model.cur_prog = Model.Progress.WORK;
@@ -133,7 +133,7 @@ public class Controller{
           model.next_button_color = model.next_color;
 
 
-                }else if (overButton(model.back,x,y)){
+        }else if (overButton(model.back,x,y)){
         	model.over_back_1 = false;
         	model.cur_prog = Model.Progress.WORK;
         	model.cur_level = model.cur_level.getPrevLevel();

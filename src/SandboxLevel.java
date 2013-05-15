@@ -53,7 +53,7 @@ public class SandboxLevel extends Level {
 			commandbox_1 = new CommandBox(40, 200, "if fridge full jump to top");
 			commandbox_2 = new CommandBox(40, 260, "take item in fridge");
 			commandbox_3 = new CommandBox(210, 200, "dump item on floor");
-			commandbox_4 = new CommandBox(210, 260, "loop while standing on floor");
+			commandbox_4 = new CommandBox(210, 260, " repeat while standing on floor");
 			commandbox_5 = new CommandBox(40, 320, "end repeated code");
 			commandbox_6 = new CommandBox(40, 380, "take off shoes");
 			commandbox_7 = new CommandBox(40, 440, "jump up and down ");
@@ -92,11 +92,11 @@ public class SandboxLevel extends Level {
 			font2 = new TrueTypeFont(font1, false);
 			tf_list = new ArrayList<TextField>();
 			
-			botfire = new BigImage("images/botfire.jpg", Image.FILTER_NEAREST, 512);
+			botfire = new BigImage("images/botfire.jpg", Image.FILTER_NEAREST, 1024);
 			botfire = botfire.getSubImage(0,0,600,300);
 			
-			man_down = new BigImage("images/man_down.png", Image.FILTER_NEAREST, 512);
-			man_down = man_down.getSubImage(0,0,279,298);
+			man_down = new BigImage("images/fall_down.jpg", Image.FILTER_NEAREST, 1024);
+			man_down = man_down.getSubImage(0,0,600,387);
 			
 	
 			
@@ -220,7 +220,7 @@ public class SandboxLevel extends Level {
 				
 			}
 			if (fell) {
-				model.cur_error = "you fell down!";
+				model.cur_error = "You fell down! Get up you lazy bum!";
 			}else {
 				model.cur_error = "Do something crazy!";
 			}

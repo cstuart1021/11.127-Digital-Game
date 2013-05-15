@@ -89,7 +89,7 @@ public class Level1 extends Level{
 			tf2.setText("You are tasked with giving instructions to a robot to");
 			tf3.setText("make peanut butter sandwiches for your family.");
 			tf4.setText("But alas, your children have left the kitchen a complete mess! " );
-			tf5.setText("Drag commands to the stack!");
+			tf5.setText("Commands are executed top to bottom on the right.");
 			tf_list = new ArrayList<TextField>();
 			tf_list.add(tf1);
 			tf_list.add(tf2);
