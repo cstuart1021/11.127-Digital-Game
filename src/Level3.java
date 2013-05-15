@@ -73,6 +73,7 @@ public class Level3 extends Level{
 	Image bread_needed;
 	Image pbj_tools;
 	Image not_enough;
+	Image efficiency;
 
 	public Level3(Model m, GameContainer gc) throws SlickException{
 		this.model = m;
@@ -135,26 +136,29 @@ public class Level3 extends Level{
 		tf_list.add(tf6);
 		tf_list.add(tf7);
 		
-		confused_robot = new BigImage("images/confused-robot.jpg",Image.FILTER_NEAREST,512);
+		confused_robot = new BigImage("images/confused-robot.jpg",Image.FILTER_NEAREST);
 		confused_robot = confused_robot.getSubImage(0,0,300,450);
 		
-		no_sandwich = new BigImage("images/no-sandwich.jpg",Image.FILTER_NEAREST,512);
+		no_sandwich = new BigImage("images/no-sandwich.jpg",Image.FILTER_NEAREST);
 		no_sandwich = no_sandwich.getSubImage(0,0,400,450);
 		
-		sandwich_on_plate = new BigImage("images/sandwich-on-plate.jpg", Image.FILTER_NEAREST, 512);
+		sandwich_on_plate = new BigImage("images/sandwich-on-plate.jpg", Image.FILTER_NEAREST);
 		sandwich_on_plate = sandwich_on_plate.getSubImage(0,0,510,400);
 		
-		pb_loves_j = new BigImage("images/pb-loves-j.png",Image.FILTER_LINEAR);
+		pb_loves_j = new BigImage("images/pb-loves-j.png",Image.FILTER_NEAREST);
 		pb_loves_j = pb_loves_j.getSubImage(0, 0, 600, 400);
 		
-		bread_needed = new BigImage("images/bread-needed.jpg",Image.FILTER_LINEAR);
-		bread_needed = bread_needed.getSubImage(0, 0, 400, 600);
+		bread_needed = new BigImage("images/bread-needed.jpg",Image.FILTER_NEAREST);
+		bread_needed = bread_needed.getSubImage(0, 0, 600, 600).getScaledCopy(500, 500);
 		
-		pbj_tools = new BigImage("images/pbj-tools.jpg",Image.FILTER_LINEAR);
-		pbj_tools = pbj_tools.getSubImage(0, 0, 500, 300);
+		pbj_tools = new BigImage("images/pbj-tools.jpg",Image.FILTER_NEAREST);
+		pbj_tools = pbj_tools.getSubImage(0, 0, 650, 500).getScaledCopy(600, 450);
 		
-		not_enough = new BigImage("images/not-enough.jpg",Image.FILTER_LINEAR);
+		not_enough = new BigImage("images/not-enough.jpg",Image.FILTER_NEAREST);
 		not_enough = not_enough.getSubImage(0,0,500,400);
+		
+		efficiency = new BigImage("images/efficiency.jpg",Image.FILTER_NEAREST);
+		efficiency = efficiency.getSubImage(0,0,650,400);
 
 	}
 
@@ -223,6 +227,8 @@ public class Level3 extends Level{
 			model.cur_prog = Model.Progress.ERROR;
 		}else if(efficiency_error){
 			model.cur_error = "You don't need to get the same materials again!";
+			model.show_image = true;
+			model.cur_image = efficiency;
 			model.cur_prog = Model.Progress.ERROR;
 		}else if(bread_error){
 			model.cur_error = "Need bread out to spread the pb&j.";
