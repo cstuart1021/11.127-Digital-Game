@@ -39,7 +39,10 @@ public class Level1 extends Level{
 
 	  Stack stack = new Stack(600, 40, 10);
 	  Image error_image_1;
-	  
+	  Image error_no_water;
+	  Image error_no_soap;
+	  Image error_task;
+	  Image error_dishes;
 		
 		public Level1(Model m, GameContainer gc) throws SlickException{
 			this.model = m;
@@ -97,6 +100,20 @@ public class Level1 extends Level{
 			
 			error_image_1 = new BigImage("images/no_water.jpg",Image.FILTER_NEAREST,512);
 			error_image_1 = error_image_1.getSubImage(0,0,400,400);
+			
+			error_no_water = new BigImage("images/water-vortex2.jpg", Image.FILTER_NEAREST, 512);
+			error_no_water = error_no_water.getSubImage(0,0,315,213);
+			
+			error_no_soap = new BigImage("images/dawn.jpg", Image.FILTER_NEAREST, 512);
+			error_no_soap = error_no_soap.getSubImage(0,0,250,472);
+			
+			error_task = new BigImage("images/no_refrigerator.jpg", Image.FILTER_NEAREST, 512);
+			error_task = error_task.getSubImage(0,0,300,297);
+			
+			error_dishes = new BigImage("images/Dirty-dishes.jpg", Image.FILTER_NEAREST, 512);
+			error_dishes = error_dishes.getSubImage(0,0,495,345);
+			
+			
 		}
 		
 		public void run(){
@@ -143,6 +160,8 @@ public class Level1 extends Level{
 			if (! contains_plug) {
 				model.cur_error = "The water is escaping!";
 				model.cur_prog = Model.Progress.ERROR;
+				model.cur_image = error_no_water;
+				model.show_image = true;
 			}
 			else if (! ran_water) {
 				model.cur_error = "no water!";
@@ -153,14 +172,20 @@ public class Level1 extends Level{
 			else if (! added_soap) {
 				model.cur_error = model.error_2;
 				model.cur_prog = Model.Progress.ERROR;
+				model.cur_image = error_no_soap;
+				model.show_image = true;
 			} else if ( wrong) {
 				model.cur_error = model.error_3;
 				model.cur_prog = Model.Progress.ERROR;
+				model.cur_image = error_task;
+				model.show_image = true;
 			}
 			else if (! (containsCommandBox1 && containsCommandBox2 &&
 					contains3 && contains4 && contains5)){
 				model.cur_error = model.error_1;
 				model.cur_prog = Model.Progress.ERROR;
+				model.cur_image = error_dishes;
+				model.show_image = true;
 			} else {
 				model.cur_error = "Done!";
 				model.cur_prog = Model.Progress.SUCCESS;
