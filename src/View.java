@@ -79,7 +79,7 @@ public class View {
 				}
 			} else if (model.cur_prog == Model.Progress.SUCCESS) {
 				g.setColor(Color.green);
-				g.drawString(model.cur_error, 100, 140);
+				g.drawString(model.cur_error, 400, 180);
 				if (model.show_image){
 					model.cur_image.draw(300,300);
 				}
