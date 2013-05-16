@@ -128,7 +128,7 @@ public class Level3 extends Level{
 		tf4.setText("PB&J sandwiches! You need to instruct your trusty robot");
 		tf5.setText("to make 20 sandwiches. You're robot cannot handle too");
 		tf6.setText("many instructions, so make sure you don't");
-		tf7.setText(" run out of space on the stack!");
+		tf7.setText(" run out of space on the instruction list!");
 		tf_list = new ArrayList<TextField>();
 		tf_list.add(tf1);
 		tf_list.add(tf2);
